@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa da Minha História</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #5c3a92;
+      --primary-hover: #482c75;
+      --primary-light: #f5f0fb;
+      --accent-challenge: #b45309;
+      --accent-challenge-bg: #fffbeb;
+      --accent-strength: #15803d;
+      --accent-strength-bg: #f0fdf4;
+      --accent-future: #4338ca;
+      --accent-future-bg: #eef2ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 10px 25px -5px rgba(92, 58, 146, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    .container { max-width: 800px; margin: 0 auto; width: 100%; }
+    .card { background: var(--card-bg); border-radius: var(--radius); padding: 36px 28px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 24px; transition: all 0.3s ease; }
+    
+    .lang-bar { display: flex; justify-content: flex-end; margin-bottom: 16px; gap: 8px; align-items: center; }
+    select { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border); background: white; font-weight: 600; cursor: pointer; color: var(--text); font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    select:focus { border-color: var(--primary); }
+
+    /* Cabeçalho Acadêmico */
+    .academic-header { text-align: center; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .academic-badge { display: inline-block; background: #ede9fe; color: var(--primary); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .academic-header h3 { font-size: 1.15rem; color: #0f172a; margin-bottom: 4px; font-weight: 700; }
+    .academic-header p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 4px; }
+    .academic-header .authors { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+
+    .main-title { text-align: center; font-size: 2.1rem; color: var(--primary); margin-bottom: 12px; font-weight: 800; letter-spacing: -0.5px; }
+    .subtitle { text-align: center; font-size: 1rem; color: var(--text-muted); margin-bottom: 24px; }
+    .hero-img { width: 100%; height: 240px; object-fit: cover; border-radius: var(--radius); margin-bottom: 20px; }
+    .notice { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 24px; }
+
+    /* Botões */
+    .btn-group { display: flex; gap: 12px; margin-top: 24px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; background: var(--primary); color: white; border: none; padding: 14px 24px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.2s; text-decoration: none; }
+    .btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn-secondary { background: #f1f5f9; color: var(--text); border: 1px solid var(--border); width: auto; min-width: 120px; }
+    .btn-secondary:hover { background: #e2e8f0; }
+
+    /* Barra de Progresso & Passos */
+    .progress-container { margin-bottom: 28px; }
+    .progress-bar-bg { width: 100%; height: 8px; background-color: #f1f5f9; border-radius: 999px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; width: 12.5%; background-color: var(--primary); border-radius: 999px; transition: width 0.3s ease; }
+    .step-counter { display: inline-block; font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+    
+    .question-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.4; }
+    .question-hint { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 20px; }
+    
+    textarea { width: 100%; min-height: 140px; padding: 16px; border-radius: 12px; border: 1.5px solid var(--border); font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.2s, box-shadow 0.2s; background: #fafafa; }
+    textarea:focus { border-color: var(--primary); background: #ffffff; box-shadow: 0 0 0 3px rgba(92, 58, 146, 0.1); }
+    .char-count { font-size: 0.8rem; color: var(--text-muted); text-align: right; margin-top: 6px; }
+
+    /* Resultado Final */
+    .map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    @media (max-width: 640px) { .map-grid { grid-template-columns: 1fr; } }
+    .map-box { padding: 20px; border-radius: 12px; border: 1px solid transparent; }
+    .box-challenge { background: var(--accent-challenge-bg); border-color: #fde68a; }
+    .box-challenge h3 { color: var(--accent-challenge); margin-bottom: 12px; font-size: 1.05rem; }
+    .box-strength { background: var(--accent-strength-bg); border-color: #bbf7d0; }
+    .box-strength h3 { color: var(--accent-strength); margin-bottom: 12px; font-size: 1.05rem; }
+    .box-future { background: var(--accent-future-bg); border-color: #c7d2fe; }
+    .box-future h3 { color: var(--accent-future); margin-bottom: 12px; font-size: 1.05rem; }
+    .box-belong { background: #faf5ff; border: 1px solid #e9d5ff; padding: 20px; border-radius: 12px; margin-bottom: 16px; }
+    .box-belong h3 { font-size: 1.05rem; color: var(--primary); margin-bottom: 8px; }
+
+    .item-result { margin-bottom: 12px; }
+    .item-result:last-child { margin-bottom: 0; }
+    .item-result strong { display: block; font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; margin-bottom: 2px; }
+    .item-result p { font-size: 0.95rem; color: var(--text); }
+
+    .quote-box { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 18px; border-radius: 8px; font-style: italic; color: var(--primary); text-align: center; margin: 24px 0; font-size: 0.95rem; }
+    
+    .resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+    @media (max-width: 640px) { .resources-grid { grid-template-columns: 1fr; } }
+    .resource-card { border: 1px solid var(--border); padding: 16px; border-radius: 10px; background: white; }
+    .resource-card h4 { font-size: 0.92rem; margin-bottom: 4px; color: #0f172a; }
+    .resource-card p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
+    .resource-card a { font-size: 0.82rem; color: var(--primary); font-weight: 600; text-decoration: none; }
+    .resource-card a:hover { text-decoration: underline; }
+    
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-bar">
+      <span>🌐</span>
+      <select id="langSelect" onchange="changeLang(this.value)">
+        <option value="pt-BR">🇧🇷 Português (Brasil)</option>
+        <option value="pt-PT">🇵🇹 Português (Portugal)</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="it">🇮🇹 Italiano</option>
+        <option value="en">🇬🇧 English</option>
+      </select>
+    </div>
+
+    <!-- TELA 1: HOME -->
+    <div id="screen-home" class="card">
+      <div class="academic-header">
+        <div class="academic-badge">PROJETO ACADÊMICO • PSICOLOGIA • 2026/2</div>
+        <h3>Faculdade do CEFI</h3>
+        <p><strong>Disciplina:</strong> Emoções, Sofrimento e Resiliência</p>
+        <p><strong>Professora:</strong> Mara Regina Soares Wanderley Lins</p>
+        <div class="authors">
+          <strong>Desenvolvido por:</strong><br>
+          Rafaela Marcotti, Pablo Girardi, Fernando Matias Valenzuela Carlucci, Maria Eduarda Zambiazi e Maria Carolina Bortoloti.
+        </div>
+      </div>
+
+      <h1 class="main-title" id="t-title">MAPA DA MINHA HISTÓRIA</h1>
+      <p class="subtitle" id="t-subtitle">Uma experiência interativa para refletir sobre caminhos, emoções, desafios, vínculos e forças presentes na experiência migratória.</p>
+      
+      <img class="hero-img" src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85" alt="Caminho e acolhimento" />
+      
+      <div class="notice">
+        <strong>ℹ️ <span id="t-disclaimer-title">Esta ferramenta não é um teste psicológico nem uma avaliação clínica.</span></strong>
+        <p id="t-disclaimer">Suas respostas são usadas para construir seu mapa reflexivo individual. A ferramenta não requer cadastro prévio.</p>
+      </div>
+      
+      <button class="btn" onclick="startForm()" id="t-btn-start">Começar a reflexão</button>
+    </div>
+
+    <!-- TELA 2: FORMULÁRIO PASSO A PASSO (8 ETAPAS) -->
+    <div id="screen-form" class="card hidden">
+      <div class="progress-container">
+        <span class="step-counter" id="step-counter-text">ETAPA 1 DE 8</span>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Passo 1 -->
+      <div id="step-1" class="form-step">
+        <div class="question-title" id="t-q1-title">O que pode fazer você sentir medo, insegurança, sofrimento ou se sentir vulnerável?</div>
+        <div class="question-hint" id="t-q1-hint">(Pense em situações, sentimentos, condições ou experiências).</div>
+        <textarea id="q1" maxlength="600" oninput="updateCount('q1', 'c1')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c1">0</span>/600</div>
+      </div>
+
+      <!-- Passo 2 -->
+      <div id="step-2" class="form-step hidden">
+        <div class="question-title" id="t-q2-title">Quais situações ou experiências deixaram a vida mais difícil para quem imigrou ou está imigrando?</div>
+        <div class="question-hint" id="t-q2-hint">(Pode falar sobre cotidiano, relações, trabalho, moradia, idioma ou documentação).</div>
+        <textarea id="q2" maxlength="600" oninput="updateCount('q2', 'c2')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c2">0</span>/600</div>
+      </div>
+
+      <!-- Passo 3 -->
+      <div id="step-3" class="form-step hidden">
+        <div class="question-title" id="t-q3-title">Quais mudanças, perdas ou saudades do seu país podem fazer você se sentir mal emocionalmente?</div>
+        <div class="question-hint" id="t-q3-hint">(Pode pensar em pessoas, lugares, comidas, costumes, vínculos, língua, rotina ou outras partes da vida no seu país).</div>
+        <textarea id="q3" maxlength="600" oninput="updateCount('q3', 'c3')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c3">0</span>/600</div>
+      </div>
+
+      <!-- Passo 4 -->
+      <div id="step-4" class="form-step hidden">
+        <div class="question-title" id="t-q4-title">O que ajuda você ou outras pessoas a enfrentar essas dificuldades?</div>
+        <div class="question-hint" id="t-q4-hint">(Pode ser uma pessoa, vínculo, comunidade, recurso, habilidade ou oportunidade).</div>
+        <textarea id="q4" maxlength="600" oninput="updateCount('q4', 'c4')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c4">0</span>/600</div>
+      </div>
+
+      <!-- Passo 5 -->
+      <div id="step-5" class="form-step hidden">
+        <div class="question-title" id="t-q5-title">O que dá força, esperança ou faz você se sentir parte de um lugar ou grupo?</div>
+        <div class="question-hint" id="t-q5-hint">(Conte o que ajuda a construir um novo caminho).</div>
+        <textarea id="q5" maxlength="600" oninput="updateCount('q5', 'c5')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c5">0</span>/600</div>
+      </div>
+
+      <!-- Passo 6 -->
+      <div id="step-6" class="form-step hidden">
+        <div class="question-title" id="t-q6-title">Quem ou o que ajuda você quando precisa de apoio?</div>
+        <div class="question-hint" id="t-q6-hint">(Pode ser família, amigos, comunidade, trabalho, escola, associação ou outro apoio).</div>
+        <textarea id="q6" maxlength="600" oninput="updateCount('q6', 'c6')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c6">0</span>/600</div>
+      </div>
+
+      <!-- Passo 7 -->
+      <div id="step-7" class="form-step hidden">
+        <div class="question-title" id="t-q7-title">O que poderia ser mudado para reduzir os riscos e fortalecer a sua proteção?</div>
+        <div class="question-hint" id="t-q7-hint">(Pense em mudanças possíveis nas relações, comunidade, serviços ou sociedade).</div>
+        <textarea id="q7" maxlength="600" oninput="updateCount('q7', 'c7')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c7">0</span>/600</div>
+      </div>
+
+      <!-- Passo 8 -->
+      <div id="step-8" class="form-step hidden">
+        <div class="question-title" id="t-q8-title">Onde eu pertenço quando minha história está em dois lugares?</div>
+        <div class="question-hint" id="t-q8-hint">(Não existe resposta certa. Escreva o que essa pergunta desperta em você).</div>
+        <textarea id="q8" maxlength="600" oninput="updateCount('q8', 'c8')" placeholder="Escreva aqui..."></textarea>
+        <div class="char-count"><span id="c8">0</span>/600</div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary hidden" id="btn-prev" onclick="prevStep()">Voltar</button>
+        <button class="btn" id="btn-next" onclick="nextStep()">Avançar</button>
+      </div>
+    </div>
+
+    <!-- TELA 3: MAPA FINAL -->
+    <div id="screen-result" class="card hidden">
+      <h2 id="t-result-title" style="color: var(--primary); margin-bottom: 4px; text-align: center;">Mapa da Minha História</h2>
+      <p class="subtitle" id="t-result-desc" style="font-size: 0.95rem;">Um panorama reflexivo integrando seus desafios, recursos e espaços de pertencimento.</p>
+
+      <div class="map-grid">
+        <!-- Coluna 1: Desafios -->
+        <div class="map-box box-challenge">
+          <h3 id="t-col-chal">⚠️ Desafios & Vulnerabilidades</h3>
+          <div class="item-result">
+            <strong id="t-lbl-q1">Medos & Sentimentos:</strong>
+            <p id="out-q1">-</p>
+          </div>
+          <div class="item-result">
+            <strong id="t-lbl-q2">Dificuldades na Imigração:</strong>
+            <p id="out-q2">-</p>
+          </div>
+          <div class="item-result">
+            <strong id="t-lbl-q3">Perdas & Saudades:</strong>
+            <p id="out-q3">-</p>
+          </div>
+        </div>
+
+        <!-- Coluna 2: Recursos e Forças -->
+        <div class="map-box box-strength">
+          <h3 id="t-col-str">🌱 Recursos & Forças</h3>
+          <div class="item-result">
+            <strong id="t-lbl-q4">Estratégias de Enfrentamento:</strong>
+            <p id="out-q4">-</p>
+          </div>
+          <div class="item-result">
+            <strong id="t-lbl-q5">Força & Esperança:</strong>
+            <p id="out-q5">-</p>
+          </div>
+          <div class="item-result">
+            <strong id="t-lbl-q6">Rede de Apoio:</strong>
+            <p id="out-q6">-</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloco de Proteção e Mudanças -->
+      <div class="map-box box-future" style="margin-bottom: 16px;">
+        <h3 id="t-col-fut">🛡️ Proteção & Mudanças Necessárias</h3>
+        <div class="item-result">
+          <p id="out-q7">-</p>
+        </div>
+      </div>
+
+      <!-- Bloco de Pertencimento -->
+      <div class="box-belong">
+        <h3 id="t-res-belong">💜 Onde eu pertenço quando minha história está em dois lugares?</h3>
+        <p id="out-q8" style="white-space: pre-wrap; font-size: 0.98rem;">-</p>
+      </div>
+
+      <div class="quote-box" id="t-quote">
+        “Resiliência não significa ausência de sofrimento; também pode significar encontrar recursos, vínculos e caminhos para atravessá-lo.”
+      </div>
+
+      <div style="margin-top: 32px;">
+        <h3 id="t-support-title" style="color: var(--primary); text-align: center;">🌱 Você não precisa enfrentar tudo sozinho</h3>
+        <p id="t-support-sub" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; text-align: center;">Se alguma questão merecer cuidado ou informação oficial, estes são pontos de partida:</p>
+
+        <div class="resources-grid">
+          <div class="resource-card">
+            <h4 id="t-r1-t">🇧🇷 Serviços para imigrantes</h4>
+            <p id="t-r1-d">Registro migratório, residência, refúgio e naturalização.</p>
+            <a href="https://www.gov.br/pt-br/temas/servicos-para-imigrantes" target="_blank" class="t-r-link">Acessar serviço oficial →</a>
+          </div>
+          <div class="resource-card">
+            <h4 id="t-r2-t">⚖️ Direitos e migrações</h4>
+            <p id="t-r2-d">Informações oficiais sobre direitos e políticas migratórias.</p>
+            <a href="https://www.gov.br/mj/pt-br/assuntos/seus-direitos/migracoes" target="_blank" class="t-r-link">Conhecer recursos →</a>
+          </div>
+          <div class="resource-card">
+            <h4 id="t-r3-t">💼 Trabalho e imigração</h4>
+            <p id="t-r3-d">Autorização de residência, trabalho e processos laborais.</p>
+            <a href="https://www.gov.br/mj/pt-br/assuntos/seus-direitos/migracoes/portaldeimigracao" target="_blank" class="t-r-link">Acessar portal →</a>
+          </div>
+          <div class="resource-card">
+            <h4 id="t-r4-t">🏠 Assistência social</h4>
+            <p id="t-r4-d">Rede de assistência social (CRAS/CREAS) para acolhimento.</p>
+            <a href="https://www.gov.br/mdh/pt-br/assuntos/migrantes-refugiados-e-apatridas" target="_blank" class="t-r-link">Conhecer orientações →</a>
+          </div>
+          <div class="resource-card">
+            <h4 id="t-r5-t">🧭 Polícia Federal</h4>
+            <p id="t-r5-d">Orientações e agendamentos sobre documentação oficial.</p>
+            <a href="https://www.gov.br/pf/pt-br/assuntos/imigracao" target="_blank" class="t-r-link">Acessar informações →</a>
+          </div>
+          <div class="resource-card">
+            <h4 id="t-r6-t">🏥 Saúde Pública</h4>
+            <p id="t-r6-d">Acesso gratuito e acolhimento nas unidades de saúde do SUS.</p>
+            <a href="https://prefeitura.poa.br/sms" target="_blank" class="t-r-link">Acessar Secretaria de Saúde →</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" style="width: 100%; margin-top: 24px;" onclick="goToScreen('home')" id="t-btn-restart">Refazer reflexão</button>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      'pt-BR': {
+        title: "MAPA DA MINHA HISTÓRIA",
+        subtitle: "Uma experiência interativa para refletir sobre caminhos, emoções, desafios, vínculos e forças presentes na experiência migratória.",
+        disclaimerTitle: "Esta ferramenta não é um teste psicológico nem uma avaliação clínica.",
+        disclaimer: "Suas respostas são usadas para construir seu mapa reflexivo individual. A ferramenta não requer cadastro prévio.",
+        btnStart: "Começar a reflexão",
+        stepPrefix: "ETAPA",
+        stepOf: "DE",
+        btnPrev: "Voltar",
+        btnNext: "Avançar",
+        btnGenerate: "Gerar meu Mapa",
+        q1Title: "O que pode fazer você sentir medo, insegurança, sofrimento ou se sentir vulnerável?",
+        q1Hint: "(Pense em situações, sentimentos, condições ou experiências).",
+        q2Title: "Quais situações ou experiências deixaram a vida mais difícil para quem imigrou ou está imigrando?",
+        q2Hint: "(Pode falar sobre cotidiano, relações, trabalho, moradia, idioma ou documentação).",
+        q3Title: "Quais mudanças, perdas ou saudades do seu país podem fazer você se sentir mal emocionalmente?",
+        q3Hint: "(Pode pensar em pessoas, lugares, comidas, costumes, vínculos, língua, rotina ou outras partes da vida no seu país).",
+        q4Title: "O que ajuda você ou outras pessoas a enfrentar essas dificuldades?",
+        q4Hint: "(Pode ser uma pessoa, vínculo, comunidade, recurso, habilidade ou oportunidade).",
+        q5Title: "O que dá força, esperança ou faz você se sentir parte de um lugar ou grupo?",
+        q5Hint: "(Conte o que ajuda a construir um novo caminho).",
+        q6Title: "Quem ou o que ajuda você quando precisa de apoio?",
+        q6Hint: "(Pode ser família, amigos, comunidade, trabalho, escola, associação ou outro apoio).",
+        q7Title: "O que poderia ser mudado para reduzir os riscos e fortalecer a sua proteção?",
+        q7Hint: "(Pense em mudanças possíveis nas relações, comunidade, serviços ou sociedade).",
+        q8Title: "Onde eu pertenço quando minha história está em dois lugares?",
+        q8Hint: "(Não existe resposta certa. Escreva o que essa pergunta desperta em você).",
+        resultTitle: "Mapa da Minha História",
+        resultDesc: "Um panorama reflexivo integrando seus desafios, recursos e espaços de pertencimento.",
+        colChal: "⚠️ Desafios & Vulnerabilidades",
+        colStr: "🌱 Recursos & Forças",
+        colFut: "🛡️ Proteção & Mudanças Necessárias",
+        resBelong: "💜 Onde eu pertenço quando minha história está em dois lugares?",
+        lblQ1: "Medos & Sentimentos:",
+        lblQ2: "Dificuldades na Imigração:",
+        lblQ3: "Perdas & Saudades:",
+        lblQ4: "Estratégias de Enfrentamento:",
+        lblQ5: "Força & Esperança:",
+        lblQ6: "Rede de Apoio:",
+        quote: "“Resiliência não significa ausência de sofrimento; também pode significar encontrar recursos, vínculos e caminhos para atravessá-lo.”",
+        supportTitle: "🌱 Você não precisa enfrentar tudo sozinho",
+        supportSub: "Se alguma questão merecer cuidado ou informação oficial, estes são pontos de partida:",
+        r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registro migratório, residência, refúgio e naturalização.",
+        r2t: "⚖️ Direitos e migrações", r2d: "Informações oficiais sobre direitos e políticas migratórias.",
+        r3t: "💼 Trabalho e imigração", r3d: "Autorização de residência, trabalho e processos laborais.",
+        r4t: "🏠 Assistência social", r4d: "Rede de assistência social (CRAS/CREAS) para acolhimento.",
+        r5t: "🧭 Polícia Federal", r5d: "Orientações e agendamentos sobre documentação oficial.",
+        r6t: "🏥 Saúde Pública", r6d: "Acesso gratuito e acolhimento nas unidades de saúde do SUS.",
+        linkText: "Acessar serviço oficial →",
+        btnRestart: "Refazer reflexão"
+      },
+      'pt-PT': {
+        title: "MAPA DA MINHA HISTÓRIA",
+        subtitle: "Uma experiência interativa para refletir sobre caminhos, emoções, desafios, laços e forças presentes na experiência migratória.",
+        disclaimerTitle: "Esta ferramenta não é um teste psicológico nem uma avaliação clínica.",
+        disclaimer: "As suas respostas são utilizadas para construir o seu mapa reflexivo individual.",
+        btnStart: "Começar a reflexão",
+        stepPrefix: "ETAPA",
+        stepOf: "DE",
+        btnPrev: "Voltar",
+        btnNext: "Avançar",
+        btnGenerate: "Gerar o meu Mapa",
+        q1Title: "O que pode fazer com que sinta medo, insegurança, sofrimento ou se sinta vulnerável?",
+        q1Hint: "(Pense em situações, sentimentos, condições ou experiências).",
+        q2Title: "Que situações ou experiências tornaram a vida mais difícil para quem emigrou ou está a emigrar?",
+        q2Hint: "(Pode falar sobre o quotidiano, relações, trabalho, habitação, idioma ou documentação).",
+        q3Title: "Que mudanças, perdas ou saudades do seu país podem fazê-lo sentir-se em baixo emocionalmente?",
+        q3Hint: "(Pense em pessoas, lugares, sabores, costumes, laços, língua ou rotinas).",
+        q4Title: "O que ajuda a si ou a outras pessoas a enfrentar estas dificuldades?",
+        q4Hint: "(Pode ser uma pessoa, laço, comunidade, recurso, competência ou oportunidade).",
+        q5Title: "O que lhe dá força, esperança ou faz com que se sinta parte de um lugar ou grupo?",
+        q5Hint: "(Partilhe o que ajuda a construir um novo caminho).",
+        q6Title: "Quem ou o que o ajuda quando precisa de apoio?",
+        q6Hint: "(Pode ser família, amigos, comunidade, trabalho, escola ou associação).",
+        q7Title: "O que poderia ser mudado para reduzir os riscos e fortalecer a sua proteção?",
+        q7Hint: "(Pense em mudanças possíveis nas relações, comunidade, serviços ou sociedade).",
+        q8Title: "Onde pertenço quando a minha história está em dois lugares?",
+        q8Hint: "(Não existe resposta certa. Escreva o que esta pergunta lhe suscita).",
+        resultTitle: "Mapa da Minha História",
+        resultDesc: "Um panorama reflexivo integrando os seus desafios, recursos e espaços de pertença.",
+        colChal: "⚠️ Desafios & Vulnerabilidades",
+        colStr: "🌱 Recursos & Forças",
+        colFut: "🛡️ Proteção & Mudanças Necessárias",
+        resBelong: "💜 Onde pertenço quando a minha história está em dois lugares?",
+        lblQ1: "Medos & Sentimentos:",
+        lblQ2: "Dificuldades na Emigração:",
+        lblQ3: "Perdas & Saudades:",
+        lblQ4: "Estratégias de Superação:",
+        lblQ5: "Força & Esperança:",
+        lblQ6: "Rede de Apoio:",
+        quote: "“Resiliência não significa ausência de sofrimento; também pode significar encontrar recursos, laços e caminhos para o ultrapassar.”",
+        supportTitle: "🌱 Não precisa de enfrentar tudo sozinho",
+        supportSub: "Se alguma questão merecer cuidado ou apoio institucional:",
+        r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registo migratório, residência e legalização.",
+        r2t: "⚖️ Direitos e migrações", r2d: "Informações sobre integração e direitos humanos.",
+        r3t: "💼 Trabalho e migração", r3d: "Autorizações de trabalho e documentação laboral.",
+        r4t: "🏠 Apoio Social", r4d: "Rede de assistência e acolhimento municipal.",
+        r5t: "🧭 Polícia Federal", r5d: "Agendamentos de permanência e identificação.",
+        r6t: "🏥 Saúde Pública", r6d: "Acesso universal e gratuito aos cuidados de saúde (SUS).",
+        linkText: "Consultar serviço oficial →",
+        btnRestart: "Refazer reflexão"
+      },
+      'es': {
+        title: "MAPA DE MI HISTORIA",
+        subtitle: "Una experiencia interactiva para reflexionar sobre caminos, emociones, desafíos, vínculos y fortalezas en la experiencia migratoria.",
+        disclaimerTitle: "Esta herramienta no es un test psicológico ni una evaluación clínica.",
+        disclaimer: "Tus respuestas se utilizan para construir tu mapa reflexivo individual.",
+        btnStart: "Comenzar la reflexión",
+        stepPrefix: "ETAPA",
+        stepOf: "DE",
+        btnPrev: "Atrás",
+        btnNext: "Siguiente",
+        btnGenerate: "Generar mi Mapa",
+        q1Title: "¿Qué puede hacer que sientas miedo, inseguridad, sufrimiento o sentirte vulnerable?",
+        q1Hint: "(Piensa en situaciones, sentimientos, condiciones o experiencias).",
+        q2Title: "¿Qué situaciones o experiencias hicieron la vida más difícil para quien emigró o está emigrando?",
+        q2Hint: "(Puedes hablar de vida cotidiana, relaciones, trabajo, vivienda, idioma o documentación).",
+        q3Title: "¿Qué cambios, pérdidas o añoranzas de tu país pueden hacerte sentir mal emocionalmente?",
+        q3Hint: "(Personas, lugares, comidas, costumbres, vínculos, idioma, rutina o vida cotidiana).",
+        q4Title: "¿Qué te ayuda a ti o a otros a afrontar estas dificultades?",
+        q4Hint: "(Puede ser una persona, vínculo, comunidad, recurso, habilidad u oportunidad).",
+        q5Title: "¿Qué te da fuerza, esperanza o te hace sentir parte de un lugar o grupo?",
+        q5Hint: "(Cuenta lo que ayuda a construir un nuevo camino).",
+        q6Title: "¿Quién o qué te ayuda cuando necesitas apoyo?",
+        q6Hint: "(Familia, amigos, comunidad, trabajo, escuela, asociación u otro apoyo).",
+        q7Title: "¿Qué podría cambiarse para reducir los riesgos y fortalecer tu protección?",
+        q7Hint: "(Cambios posibles en relaciones, comunidad, servicios o sociedad).",
+        q8Title: "¿A dónde pertenezco cuando mi historia está en dos lugares?",
+        q8Hint: "(No hay respuesta correcta. Escribe lo que esta pregunta despierta en ti).",
+        resultTitle: "Mapa de Mi Historia",
+        resultDesc: "Un panorama reflexivo que integra desafíos, recursos y espacios de pertenencia.",
+        colChal: "⚠️ Desafíos & Vulnerabilidades",
+        colStr: "🌱 Recursos & Fortalezas",
+        colFut: "🛡️ Protección & Cambios Necesarios",
+        resBelong: "💜 ¿A dónde pertenezco cuando mi historia está en dos lugares?",
+        lblQ1: "Miedos & Sentimientos:",
+        lblQ2: "Dificultades en la Migración:",
+        lblQ3: "Pérdidas & Añoranzas:",
+        lblQ4: "Estrategias de Afrontamiento:",
+        lblQ5: "Fuerza & Esperanza:",
+        lblQ6: "Red de Apoyo:",
+        quote: "“La resiliencia no significa ausencia de sufrimiento; también significa encontrar recursos, vínculos y caminos para atravesarlo.”",
+        supportTitle: "🌱 No tienes que enfrentar todo solo",
+        supportSub: "Puntos de partida oficiales para orientación y trámites:",
+        r1t: "🇧🇷 Servicios para Inmigrantes", r1d: "Registro migratorio, refugio y regularización.",
+        r2t: "⚖️ Derechos y Migración", r2d: "Información sobre integración y derechos legales.",
+        r3t: "💼 Trabajo y Empleo", r3d: "Permisos de trabajo y procesos laborales.",
+        r4t: "🏠 Asistencia Social", r4d: "Red comunitaria de acogida (CRAS/CREAS).",
+        r5t: "🧭 Policía Federal", r5d: "Citas y documentación de permanencia oficial.",
+        r6t: "🏥 Salud Pública", r6d: "Acceso gratuito y universal al sistema de salud (SUS).",
+        linkText: "Acceder al servicio oficial →",
+        btnRestart: "Reiniciar reflexión"
+      },
+      'fr': {
+        title: "CARTE DE MON HISTOIRE",
+        subtitle: "Une expérience interactive pour réfléchir aux parcours, émotions, défis, liens et forces présents dans l'expérience migratoire.",
+        disclaimerTitle: "Cet outil n'est pas un test psychologique ni une évaluation clinique.",
+        disclaimer: "Vos réponses sont utilisées pour générer votre carte réflexive.",
+        btnStart: "Commencer la réflexion",
+        stepPrefix: "ÉTAPE",
+        stepOf: "SUR",
+        btnPrev: "Retour",
+        btnNext: "Suivant",
+        btnGenerate: "Générer ma Carte",
+        q1Title: "Qu'est-ce qui peut vous faire ressentir de la peur, de l'insécurité, de la souffrance ou vous rendre vulnérable ?",
+        q1Hint: "(Pensez aux situations, émotions, conditions ou expériences).",
+        q2Title: "Quelles situations ou expériences ont rendu la vie plus difficile pour ceux qui ont émigré ou émigrent ?",
+        q2Hint: "(Vie quotidienne, relations, travail, logement, langue ou papiers).",
+        q3Title: "Quels changements, pertes ou nostalgies de votre pays peuvent vous affecter émotionnellement ?",
+        q3Hint: "(Personnes, lieux, cuisine, coutumes, liens, langue, routine).",
+        q4Title: "Qu'est-ce qui vous aide, vous ou d'autres personnes, à surmonter ces difficultés ?",
+        q4Hint: "(Une personne, un lien, une communauté, une ressource, une compétence).",
+        q5Title: "Qu'est-ce qui vous donne de la force, de l'espoir ou vous donne le sentiment d'appartenir à un lieu ou groupe ?",
+        q5Hint: "(Ce qui aide à bâtir une nouvelle voie).",
+        q6Title: "Qui ou quoi vous aide lorsque vous avez besoin de soutien ?",
+        q6Hint: "(Famille, amis, communauté, travail, école, association).",
+        q7Title: "Que pourrait-on changer pour réduire les risques et renforcer votre protection ?",
+        q7Hint: "(Changements dans les relations, la communauté, les services ou la société).",
+        q8Title: "Où est-ce que j'appartiens quand mon histoire est partagée entre deux endroits ?",
+        q8Hint: "(Il n'y a pas de bonne réponse. Écrivez ce que cette question éveille en vous).",
+        resultTitle: "Carte de Mon Histoire",
+        resultDesc: "Un panorama réflexif intégrant défis, ressources et sentiment d'appartenance.",
+        colChal: "⚠️ Défis & Vulnérabilités",
+        colStr: "🌱 Ressources & Forces",
+        colFut: "🛡️ Protection & Changements Nécessaires",
+        resBelong: "💜 Où est-ce que j'appartiens quand mon histoire est entre deux endroits ?",
+        lblQ1: "Peurs & Sentiments :",
+        lblQ2: "Défis de l'Immigration :",
+        lblQ3: "Pertes & Nostalgie :",
+        lblQ4: "Moyens d'Adaptation :",
+        lblQ5: "Force & Espoir :",
+        lblQ6: "Réseau de Soutien :",
+        quote: "« La résilience ne signifie pas l'absence de souffrance ; elle signifie trouver des ressources, des liens et des voies pour la traverser. »",
+        supportTitle: "🌱 Vous n'avez pas à tout affronter seul(e)",
+        supportSub: "Ressources officielles pour orientation et soutien :",
+        r1t: "🇧🇷 Services pour Immigrants", r1d: "Enregistrement migratoire, asile et titres de séjour.",
+        r2t: "⚖️ Droits et Migrations", r2d: "Politiques publiques et intégration sociale.",
+        r3t: "💼 Travail et Emploi", r3d: "Autorisations de travail et démarches d'emploi.",
+        r4t: "🏠 Assistance Sociale", r4d: "Réseau public d'accueil et orientation sociale.",
+        r5t: "🧭 Police Fédérale", r5d: "Délivrance des documents et rendez-vous officiels.",
+        r6t: "🏥 Santé Publique", r6d: "Accès universel et gratuit aux soins (SUS).",
+        linkText: "Consulter le service officiel →",
+        btnRestart: "Recommencer"
+      },
+      'it': {
+        title: "MAPPA DELLA MIA STORIA",
+        subtitle: "Un'esperienza interattiva per riflettere su percorsi, emozioni, sfide, legami e punti di forza dell'esperienza migratoria.",
+        disclaimerTitle: "Questo strumento non è un test psicologico né una valutazione clinica.",
+        disclaimer: "Le tue risposte sono utilizzate per costruire la tua mappa senza registrazione di dati personali.",
+        btnStart: "Inizia la riflessione",
+        stepPrefix: "TAPPA",
+        stepOf: "DI",
+        btnPrev: "Indietro",
+        btnNext: "Avanti",
+        btnGenerate: "Genera la mia Mappa",
+        q1Title: "Cosa può farti provare paura, insicurezza, sofferenza o farti sentire vulnerabile?",
+        q1Hint: "(Pensa a situazioni, sentimenti, condizioni o esperienze).",
+        q2Title: "Quali situazioni o esperienze hanno reso la vita più difficile a chi è emigrato o sta emigrando?",
+        q2Hint: "(Quotidianità, relazioni, lavoro, casa, lingua o documenti).",
+        q3Title: "Quali cambiamenti, perdite o nostalgie del tuo paese possono farti stare male emotivamente?",
+        q3Hint: "(Persone, luoghi, cibo, usanze, legami, lingua, abitudini).",
+        q4Title: "Cosa aiuta te o gli altri ad affrontare queste difficoltà?",
+        q4Hint: "(Una persona, un legame, la comunità, una risorsa, un'abilità).",
+        q5Title: "Cosa ti dà forza, speranza o ti fa sentire parte di un luogo o di un gruppo?",
+        q5Hint: "(Cosa aiuta a costruire un nuovo cammino).",
+        q6Title: "Chi o cosa ti aiuta quando hai bisogno di sostegno?",
+        q6Hint: "(Famiglia, amici, comunità, lavoro, scuola, associazione).",
+        q7Title: "Cosa si potrebbe cambiare per ridurre i rischi e rafforzare la tua protezione?",
+        q7Hint: "(Cambiamenti nelle relazioni, comunità, servizi o società).",
+        q8Title: "A che luogo appartengo quando la mia storia è in due posti diversi?",
+        q8Hint: "(Non c'è una risposta giusta. Scrivi cosa suscita in te questa domanda).",
+        resultTitle: "Mappa della Mia Storia",
+        resultDesc: "Un quadro riflessivo che integra sfide, risorse e appartenenza.",
+        colChal: "⚠️ Sfide & Vulnerabilità",
+        colStr: "🌱 Risorse & Punti di Forza",
+        colFut: "🛡️ Protezione & Cambiamenti Necessari",
+        resBelong: "💜 A che luogo appartengo quando la mia storia è in due posti?",
+        lblQ1: "Paure & Emozioni:",
+        lblQ2: "Difficoltà Migratorie:",
+        lblQ3: "Perdite & Nostalgia:",
+        lblQ4: "Strategie di Superamento:",
+        lblQ5: "Forza & Speranza:",
+        lblQ6: "Rete di Supporto:",
+        quote: "“La resilienza non significa assenza di sofferenza; significa trovare risorse, legami e strade per attraversarla.”",
+        supportTitle: "🌱 Non devi affrontare tutto da solo/a",
+        supportSub: "Punti di riferimento istituzionali:",
+        r1t: "🇧🇷 Servizi per Immigrati", r1d: "Registrazione, permessi di soggiorno e protezione.",
+        r2t: "⚖️ Diritti e Migrazioni", r2d: "Orientamento ai diritti e integrazione sociale.",
+        r3t: "💼 Lavoro e Occupazione", r3d: "Documentazione lavorativa e contratti.",
+        r4t: "🏠 Assistenza Sociale", r4d: "Rete territoriale di accoglienza e supporto familiare.",
+        r5t: "🧭 Polizia Federale", r5d: "Appuntamenti e documenti formali di permanenza.",
+        r6t: "🏥 Sanità Pubblica", r6d: "Accesso garantito e gratuito al sistema sanitario (SUS).",
+        linkText: "Accedi al portale ufficiale →",
+        btnRestart: "Ricomincia"
+      },
+      'en': {
+        title: "MAP OF MY STORY",
+        subtitle: "An interactive experience to reflect on paths, emotions, challenges, bonds, and strengths within the migratory journey.",
+        disclaimerTitle: "This tool is not a psychological test or clinical evaluation.",
+        disclaimer: "Your responses are used to generate your personal reflection map without storing identifying information.",
+        btnStart: "Start Reflection",
+        stepPrefix: "STEP",
+        stepOf: "OF",
+        btnPrev: "Back",
+        btnNext: "Next",
+        btnGenerate: "Generate my Map",
+        q1Title: "What can make you feel afraid, insecure, suffering, or feeling vulnerable?",
+        q1Hint: "(Think about situations, feelings, conditions, or experiences).",
+        q2Title: "What situations or experiences made life more difficult for those who migrated or are migrating?",
+        q2Hint: "(Daily life, relationships, work, housing, language, or legal papers).",
+        q3Title: "What changes, losses, or longings for your home country can make you feel emotionally down?",
+        q3Hint: "(People, places, food, customs, bonds, language, routine, or life back home).",
+        q4Title: "What helps you or others cope with and face these difficulties?",
+        q4Hint: "(A person, connection, community, resource, skill, or opportunity).",
+        q5Title: "What gives strength, hope, or makes you feel part of a place or group?",
+        q5Hint: "(Share what helps build a new path forward).",
+        q6Title: "Who or what helps you when you need support?",
+        q6Hint: "(Family, friends, community, workplace, school, associations).",
+        q7Title: "What could be changed to reduce risks and strengthen your safety and protection?",
+        q7Hint: "(Possible changes in relationships, community, public services, or society).",
+        q8Title: "Where do I belong when my story exists between two places?",
+        q8Hint: "(There is no right answer. Write whatever this question awakens in you).",
+        resultTitle: "Map of My Story",
+        resultDesc: "A reflective overview integrating your challenges, resources, and spaces of belonging.",
+        colChal: "⚠️ Challenges & Vulnerabilities",
+        colStr: "🌱 Resources & Strengths",
+        colFut: "🛡️ Protection & Necessary Changes",
+        resBelong: "💜 Where do I belong when my story exists between two places?",
+        lblQ1: "Fears & Feelings:",
+        lblQ2: "Migration Hardships:",
+        lblQ3: "Losses & Longings:",
+        lblQ4: "Coping Strategies:",
+        lblQ5: "Strength & Hope:",
+        lblQ6: "Support Network:",
+        quote: "“Resilience does not mean the absence of suffering; it also means finding resources, bonds, and paths to navigate through it.”",
+        supportTitle: "🌱 You don't have to face everything alone",
+        supportSub: "Official resources for guidance and support:",
+        r1t: "🇧🇷 Immigrant Services", r1d: "Migratory registration, refugee status, and residency.",
+        r2t: "⚖️ Rights & Migration", r2d: "Human rights and social integration guidelines.",
+        r3t: "💼 Labor & Employment", r3d: "Work permits and formal employment support.",
+        r4t: "🏠 Social Assistance", r4d: "Community social services and family support.",
+        r5t: "🧭 Federal Police", r5d: "Official appointments and document issuance.",
+        r6t: "🏥 Public Healthcare", r6d: "Free and universal healthcare access through SUS.",
+        linkText: "Access official service →",
+        btnRestart: "Restart"
+      }
+    };
+
+    let currentLang = 'pt-BR';
+    let currentStep = 1;
+    const totalSteps = 8;
+
+    function changeLang(lang) {
+      currentLang = lang;
+      const dict = translations[lang];
+      document.getElementById('t-title').innerText = dict.title;
+      document.getElementById('t-subtitle').innerText = dict.subtitle;
+      document.getElementById('t-disclaimer-title').innerText = dict.disclaimerTitle;
+      document.getElementById('t-disclaimer').innerText = dict.disclaimer;
+      document.getElementById('t-btn-start').innerText = dict.btnStart;
+      
+      document.getElementById('t-q1-title').innerText = dict.q1Title; document.getElementById('t-q1-hint').innerText = dict.q1Hint;
+      document.getElementById('t-q2-title').innerText = dict.q2Title; document.getElementById('t-q2-hint').innerText = dict.q2Hint;
+      document.getElementById('t-q3-title').innerText = dict.q3Title; document.getElementById('t-q3-hint').innerText = dict.q3Hint;
+      document.getElementById('t-q4-title').innerText = dict.q4Title; document.getElementById('t-q4-hint').innerText = dict.q4Hint;
+      document.getElementById('t-q5-title').innerText = dict.q5Title; document.getElementById('t-q5-hint').innerText = dict.q5Hint;
+      document.getElementById('t-q6-title').innerText = dict.q6Title; document.getElementById('t-q6-hint').innerText = dict.q6Hint;
+      document.getElementById('t-q7-title').innerText = dict.q7Title; document.getElementById('t-q7-hint').innerText = dict.q7Hint;
+      document.getElementById('t-q8-title').innerText = dict.q8Title; document.getElementById('t-q8-hint').innerText = dict.q8Hint;
+
+      document.getElementById('t-result-title').innerText = dict.resultTitle;
+      document.getElementById('t-result-desc').innerText = dict.resultDesc;
+      document.getElementById('t-col-chal').innerText = dict.colChal;
+      document.getElementById('t-col-str').innerText = dict.colStr;
+      document.getElementById('t-col-fut').innerText = dict.colFut;
+      document.getElementById('t-res-belong').innerText = dict.resBelong;
+
+      document.getElementById('t-lbl-q1').innerText = dict.lblQ1;
+      document.getElementById('t-lbl-q2').innerText = dict.lblQ2;
+      document.getElementById('t-lbl-q3').innerText = dict.lblQ3;
+      document.getElementById('t-lbl-q4').innerText = dict.lblQ4;
+      document.getElementById('t-lbl-q5').innerText = dict.lblQ5;
+      document.getElementById('t-lbl-q6').innerText = dict.lblQ6;
+
+      document.getElementById('t-quote').innerText = dict.quote;
+      document.getElementById('t-support-title').innerText = dict.supportTitle;
+      document.getElementById('t-support-sub').innerText = dict.supportSub;
+      document.getElementById('t-btn-restart').innerText = dict.btnRestart;
+
+      document.getElementById('t-r1-t').innerText = dict.r1t; document.getElementById('t-r1-d').innerText = dict.r1d;
+      document.getElementById('t-r2-t').innerText = dict.r2t; document.getElementById('t-r2-d').innerText = dict.r2d;
+      document.getElementById('t-r3-t').innerText = dict.r3t; document.getElementById('t-r3-d').innerText = dict.r3d;
+      document.getElementById('t-r4-t').innerText = dict.r4t; document.getElementById('t-r4-d').innerText = dict.r4d;
+      document.getElementById('t-r5-t').innerText = dict.r5t; document.getElementById('t-r5-d').innerText = dict.r5d;
+      document.getElementById('t-r6-t').innerText = dict.r6t; document.getElementById('t-r6-d').innerText = dict.r6d;
+      document.querySelectorAll('.t-r-link').forEach(link => link.innerText = dict.linkText);
+
+      updateStepUI();
+    }
+
+    function updateStepUI() {
+      const dict = translations[currentLang];
+      document.getElementById('step-counter-text').innerText = `${dict.stepPrefix} ${currentStep} ${dict.stepOf} ${totalSteps}`;
+      document.getElementById('progress-fill').style.width = `${(currentStep / totalSteps) * 100}%`;
+      
+      const prevBtn = document.getElementById('btn-prev');
+      const nextBtn = document.getElementById('btn-next');
+
+      if (currentStep === 1) {
+        prevBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+        prevBtn.innerText = dict.btnPrev;
+      }
+
+      if (currentStep === totalSteps) {
+        nextBtn.innerText = dict.btnGenerate;
+      } else {
+        nextBtn.innerText = dict.btnNext;
+      }
+    }
+
+    function showStep(step) {
+      for (let i = 1; i <= totalSteps; i++) {
+        const el = document.getElementById(`step-${i}`);
+        if (i === step) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      }
+      currentStep = step;
+      updateStepUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        showStep(currentStep + 1);
+      } else {
+        saveAndGenerateMap();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
+    }
+
+    function startForm() {
+      showStep(1);
+      goToScreen('form');
+    }
+
+    function goToScreen(screen) {
+      document.getElementById('screen-home').classList.add('hidden');
+      document.getElementById('screen-form').classList.add('hidden');
+      document.getElementById('screen-result').classList.add('hidden');
+
+      if (screen === 'home') {
+        for (let i = 1; i <= totalSteps; i++) {
+          document.getElementById(`q${i}`).value = '';
+          document.getElementById(`c${i}`).innerText = '0';
+        }
+        currentStep = 1;
+        document.getElementById('screen-home').classList.remove('hidden');
+      } else if (screen === 'form') {
+        document.getElementById('screen-form').classList.remove('hidden');
+      } else if (screen === 'result') {
+        document.getElementById('screen-result').classList.remove('hidden');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateCount(inputId, countId) {
+      const len = document.getElementById(inputId).value.length;
+      document.getElementById(countId).innerText = len;
+    }
+
+    function saveAndGenerateMap() {
+      const data = {
+        data_hora: new Date().toISOString(),
+        idioma: currentLang,
+        q1: document.getElementById('q1').value,
+        q2: document.getElementById('q2').value,
+        q3: document.getElementById('q3').value,
+        q4: document.getElementById('q4').value,
+        q5: document.getElementById('q5').value,
+        q6: document.getElementById('q6').value,
+        q7: document.getElementById('q7').value,
+        q8: document.getElementById('q8').value
+      };
+
+      const history = JSON.parse(localStorage.getItem('mapa_respostas') || '[]');
+      history.push(data);
+      localStorage.setItem('mapa_respostas', JSON.stringify(history));
+
+      document.getElementById('out-q1').innerText = data.q1 || '-';
+      document.getElementById('out-q2').innerText = data.q2 || '-';
+      document.getElementById('out-q3').innerText = data.q3 || '-';
+      document.getElementById('out-q4').innerText = data.q4 || '-';
+      document.getElementById('out-q5').innerText = data.q5 || '-';
+      document.getElementById('out-q6').innerText = data.q6 || '-';
+      document.getElementById('out-q7').innerText = data.q7 || '-';
+      document.getElementById('out-q8').innerText = data.q8 || '-';
+
+      goToScreen('result');
+    }
+  </script>
+</body>
+</html>
