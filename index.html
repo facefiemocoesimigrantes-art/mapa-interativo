@@ -163,9 +163,9 @@
         <div class="char-count"><span id="c2">0</span>/600</div>
       </div>
 
-      <!-- Passo 3 -->
+      <!-- Passo 3 (ATUALIZADO) -->
       <div id="step-3" class="form-step hidden">
-        <div class="question-title" id="t-q3-title">Quais mudanças, perdas ou saudades do seu país podem fazer você se sentir mal emocionalmente?</div>
+        <div class="question-title" id="t-q3-title">O que pode pesar mais emocionalmente pela saída do seu país?</div>
         <div class="question-hint" id="t-q3-hint">(Pode pensar em pessoas, lugares, comidas, costumes, vínculos, língua, rotina ou outras partes da vida no seu país).</div>
         <textarea id="q3" maxlength="600" oninput="updateCount('q3', 'c3')" placeholder="Escreva aqui..."></textarea>
         <div class="char-count"><span id="c3">0</span>/600</div>
@@ -281,6 +281,12 @@
         <p id="t-support-sub" style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; text-align: center;">Se alguma questão merecer cuidado ou informação oficial, estes são pontos de partida:</p>
 
         <div class="resources-grid">
+          <!-- CARD CEFI POA -->
+          <div class="resource-card" style="border-color: #5c3a92; background: #faf5ff;">
+            <h4 id="t-cefit" style="color: var(--primary);">🧠 CEFI POA - Suporte Psicológico</h4>
+            <p id="t-cefip">Informações gerais, acolhimento e suporte psicológico especializado.</p>
+            <a href="https://cefipoa.com.br/br/informacoes-gerais" target="_blank" id="t-cefil">Acessar portal do CEFI →</a>
+          </div>
           <div class="resource-card">
             <h4 id="t-r1-t">🇧🇷 Serviços para imigrantes</h4>
             <p id="t-r1-d">Registro migratório, residência, refúgio e naturalização.</p>
@@ -300,11 +306,6 @@
             <h4 id="t-r4-t">🏠 Assistência social</h4>
             <p id="t-r4-d">Rede de assistência social (CRAS/CREAS) para acolhimento.</p>
             <a href="https://www.gov.br/mdh/pt-br/assuntos/migrantes-refugiados-e-apatridas" target="_blank" class="t-r-link">Conhecer orientações →</a>
-          </div>
-          <div class="resource-card">
-            <h4 id="t-r5-t">🧭 Polícia Federal</h4>
-            <p id="t-r5-d">Orientações e agendamentos sobre documentação oficial.</p>
-            <a href="https://www.gov.br/pf/pt-br/assuntos/imigracao" target="_blank" class="t-r-link">Acessar informações →</a>
           </div>
           <div class="resource-card">
             <h4 id="t-r6-t">🏥 Saúde Pública</h4>
@@ -335,7 +336,7 @@
         q1Hint: "(Pense em situações, sentimentos, condições ou experiências).",
         q2Title: "Quais situações ou experiências deixaram a vida mais difícil para quem imigrou ou está imigrando?",
         q2Hint: "(Pode falar sobre cotidiano, relações, trabalho, moradia, idioma ou documentação).",
-        q3Title: "Quais mudanças, perdas ou saudades do seu país podem fazer você se sentir mal emocionalmente?",
+        q3Title: "O que pode pesar mais emocionalmente pela saída do seu país?",
         q3Hint: "(Pode pensar em pessoas, lugares, comidas, costumes, vínculos, língua, rotina ou outras partes da vida no seu país).",
         q4Title: "O que ajuda você ou outras pessoas a enfrentar essas dificuldades?",
         q4Hint: "(Pode ser uma pessoa, vínculo, comunidade, recurso, habilidade ou oportunidade).",
@@ -362,11 +363,13 @@
         quote: "“Resiliência não significa ausência de sofrimento; também pode significar encontrar recursos, vínculos e caminhos para atravessá-lo.”",
         supportTitle: "🌱 Você não precisa enfrentar tudo sozinho",
         supportSub: "Se alguma questão merecer cuidado ou informação oficial, estes são pontos de partida:",
+        cefit: "🧠 CEFI POA - Suporte Psicológico",
+        cefip: "Informações gerais, acolhimento e suporte psicológico especializado.",
+        cefil: "Acessar portal do CEFI →",
         r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registro migratório, residência, refúgio e naturalização.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações oficiais sobre direitos e políticas migratórias.",
         r3t: "💼 Trabalho e imigração", r3d: "Autorização de residência, trabalho e processos laborais.",
         r4t: "🏠 Assistência social", r4d: "Rede de assistência social (CRAS/CREAS) para acolhimento.",
-        r5t: "🧭 Polícia Federal", r5d: "Orientações e agendamentos sobre documentação oficial.",
         r6t: "🏥 Saúde Pública", r6d: "Acesso gratuito e acolhimento nas unidades de saúde do SUS.",
         linkText: "Acessar serviço oficial →",
         btnRestart: "Refazer reflexão"
@@ -386,7 +389,7 @@
         q1Hint: "(Pense em situações, sentimentos, condições ou experiências).",
         q2Title: "Que situações ou experiências tornaram a vida mais difícil para quem emigrou ou está a emigrar?",
         q2Hint: "(Pode falar sobre o quotidiano, relações, trabalho, habitação, idioma ou documentação).",
-        q3Title: "Que mudanças, perdas ou saudades do seu país podem fazê-lo sentir-se em baixo emocionalmente?",
+        q3Title: "O que pode pesar mais emocionalmente pela saída do seu país?",
         q3Hint: "(Pense em pessoas, lugares, sabores, costumes, laços, língua ou rotinas).",
         q4Title: "O que ajuda a si ou a outras pessoas a enfrentar estas dificuldades?",
         q4Hint: "(Pode ser uma pessoa, laço, comunidade, recurso, competência ou oportunidade).",
@@ -413,11 +416,13 @@
         quote: "“Resiliência não significa ausência de sofrimento; também pode significar encontrar recursos, laços e caminhos para o ultrapassar.”",
         supportTitle: "🌱 Não precisa de enfrentar tudo sozinho",
         supportSub: "Se alguma questão merecer cuidado ou apoio institucional:",
+        cefit: "🧠 CEFI POA - Apoio Psicológico",
+        cefip: "Informações gerais, acolhimento e suporte psicológico especializado.",
+        cefil: "Aceder ao portal do CEFI →",
         r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registo migratório, residência e legalização.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações sobre integração e direitos humanos.",
         r3t: "💼 Trabalho e migração", r3d: "Autorizações de trabalho e documentação laboral.",
         r4t: "🏠 Apoio Social", r4d: "Rede de assistência e acolhimento municipal.",
-        r5t: "🧭 Polícia Federal", r5d: "Agendamentos de permanência e identificação.",
         r6t: "🏥 Saúde Pública", r6d: "Acesso universal e gratuito aos cuidados de saúde (SUS).",
         linkText: "Consultar serviço oficial →",
         btnRestart: "Refazer reflexão"
@@ -437,7 +442,7 @@
         q1Hint: "(Piensa en situaciones, sentimientos, condiciones o experiencias).",
         q2Title: "¿Qué situaciones o experiencias hicieron la vida más difícil para quien emigró o está emigrando?",
         q2Hint: "(Puedes hablar de vida cotidiana, relaciones, trabajo, vivienda, idioma o documentación).",
-        q3Title: "¿Qué cambios, pérdidas o añoranzas de tu país pueden hacerte sentir mal emocionalmente?",
+        q3Title: "¿Qué puede pesar más emocionalmente al salir de tu país?",
         q3Hint: "(Personas, lugares, comidas, costumbres, vínculos, idioma, rutina o vida cotidiana).",
         q4Title: "¿Qué te ayuda a ti o a otros a afrontar estas dificultades?",
         q4Hint: "(Puede ser una persona, vínculo, comunidad, recurso, habilidad u oportunidad).",
@@ -451,12 +456,12 @@
         q8Hint: "(No hay respuesta correcta. Escribe lo que esta pregunta despierta en ti).",
         resultTitle: "Mapa de Mi Historia",
         resultDesc: "Un panorama reflexivo que integra desafíos, recursos y espacios de pertenencia.",
-        colChal: "⚠️ Desafíos & Vulnerabilidades",
+        colChal: "⚠️ Desafios & Vulnerabilidades",
         colStr: "🌱 Recursos & Fortalezas",
         colFut: "🛡️ Protección & Cambios Necesarios",
         resBelong: "💜 ¿A dónde pertenezco cuando mi historia está en dos lugares?",
         lblQ1: "Miedos & Sentimientos:",
-        lblQ2: "Dificultades en la Migración:",
+        lblQ2: "Dificuldades en la Migración:",
         lblQ3: "Pérdidas & Añoranzas:",
         lblQ4: "Estrategias de Afrontamiento:",
         lblQ5: "Fuerza & Esperanza:",
@@ -464,11 +469,13 @@
         quote: "“La resiliencia no significa ausencia de sufrimiento; también significa encontrar recursos, vínculos y caminos para atravesarlo.”",
         supportTitle: "🌱 No tienes que enfrentar todo solo",
         supportSub: "Puntos de partida oficiales para orientación y trámites:",
+        cefit: "🧠 CEFI POA - Apoyo Psicológico",
+        cefip: "Información general, acogida y apoyo psicológico especializado.",
+        cefil: "Acceder al portal de CEFI →",
         r1t: "🇧🇷 Servicios para Inmigrantes", r1d: "Registro migratorio, refugio y regularización.",
         r2t: "⚖️ Derechos y Migración", r2d: "Información sobre integración y derechos legales.",
         r3t: "💼 Trabajo y Empleo", r3d: "Permisos de trabajo y procesos laborales.",
         r4t: "🏠 Asistencia Social", r4d: "Red comunitaria de acogida (CRAS/CREAS).",
-        r5t: "🧭 Policía Federal", r5d: "Citas y documentación de permanencia oficial.",
         r6t: "🏥 Salud Pública", r6d: "Acceso gratuito y universal al sistema de salud (SUS).",
         linkText: "Acceder al servicio oficial →",
         btnRestart: "Reiniciar reflexión"
@@ -488,7 +495,7 @@
         q1Hint: "(Pensez aux situations, émotions, conditions ou expériences).",
         q2Title: "Quelles situations ou expériences ont rendu la vie plus difficile pour ceux qui ont émigré ou émigrent ?",
         q2Hint: "(Vie quotidienne, relations, travail, logement, langue ou papiers).",
-        q3Title: "Quels changements, pertes ou nostalgies de votre pays peuvent vous affecter émotionnellement ?",
+        q3Title: "Qu'est-ce qui peut peser le plus émotionnellement en quittant votre pays ?",
         q3Hint: "(Personnes, lieux, cuisine, coutumes, liens, langue, routine).",
         q4Title: "Qu'est-ce qui vous aide, vous ou d'autres personnes, à surmonter ces difficultés ?",
         q4Hint: "(Une personne, un lien, une communauté, une ressource, une compétence).",
@@ -515,11 +522,13 @@
         quote: "« La résilience ne signifie pas l'absence de souffrance ; elle signifie trouver des ressources, des liens et des voies pour la traverser. »",
         supportTitle: "🌱 Vous n'avez pas à tout affronter seul(e)",
         supportSub: "Ressources officielles pour orientation et soutien :",
+        cefit: "🧠 CEFI POA - Soutien Psychologique",
+        cefip: "Informations générales, accueil et soutien psychologique spécialisé.",
+        cefil: "Accéder au portail du CEFI →",
         r1t: "🇧🇷 Services pour Immigrants", r1d: "Enregistrement migratoire, asile et titres de séjour.",
         r2t: "⚖️ Droits et Migrations", r2d: "Politiques publiques et intégration sociale.",
         r3t: "💼 Travail et Emploi", r3d: "Autorisations de travail et démarches d'emploi.",
         r4t: "🏠 Assistance Sociale", r4d: "Réseau public d'accueil et orientation sociale.",
-        r5t: "🧭 Police Fédérale", r5d: "Délivrance des documents et rendez-vous officiels.",
         r6t: "🏥 Santé Publique", r6d: "Accès universel et gratuit aux soins (SUS).",
         linkText: "Consulter le service officiel →",
         btnRestart: "Recommencer"
@@ -539,7 +548,7 @@
         q1Hint: "(Pensa a situazioni, sentimenti, condizioni o esperienze).",
         q2Title: "Quali situazioni o esperienze hanno reso la vita più difficile a chi è emigrato o sta emigrando?",
         q2Hint: "(Quotidianità, relazioni, lavoro, casa, lingua o documenti).",
-        q3Title: "Quali cambiamenti, perdite o nostalgie del tuo paese possono farti stare male emotivamente?",
+        q3Title: "Cosa può pesare di più emotivamente nel lasciare il tuo paese?",
         q3Hint: "(Persone, luoghi, cibo, usanze, legami, lingua, abitudini).",
         q4Title: "Cosa aiuta te o gli altri ad affrontare queste difficoltà?",
         q4Hint: "(Una persona, un legame, la comunità, una risorsa, un'abilità).",
@@ -566,11 +575,13 @@
         quote: "“La resilienza non significa assenza di sofferenza; significa trovare risorse, legami e strade per attraversarla.”",
         supportTitle: "🌱 Non devi affrontare tutto da solo/a",
         supportSub: "Punti di riferimento istituzionali:",
+        cefit: "🧠 CEFI POA - Supporto Psicologico",
+        cefip: "Informazioni generali, accoglienza e supporto psicologico specializzato.",
+        cefil: "Accedi al portale CEFI →",
         r1t: "🇧🇷 Servizi per Immigrati", r1d: "Registrazione, permessi di soggiorno e protezione.",
         r2t: "⚖️ Diritti e Migrazioni", r2d: "Orientamento ai diritti e integrazione sociale.",
         r3t: "💼 Lavoro e Occupazione", r3d: "Documentazione lavorativa e contratti.",
         r4t: "🏠 Assistenza Sociale", r4d: "Rete territoriale di accoglienza e supporto familiare.",
-        r5t: "🧭 Polizia Federale", r5d: "Appuntamenti e documenti formali di permanenza.",
         r6t: "🏥 Sanità Pubblica", r6d: "Accesso garantito e gratuito al sistema sanitario (SUS).",
         linkText: "Accedi al portale ufficiale →",
         btnRestart: "Ricomincia"
@@ -590,7 +601,7 @@
         q1Hint: "(Think about situations, feelings, conditions, or experiences).",
         q2Title: "What situations or experiences made life more difficult for those who migrated or are migrating?",
         q2Hint: "(Daily life, relationships, work, housing, language, or legal papers).",
-        q3Title: "What changes, losses, or longings for your home country can make you feel emotionally down?",
+        q3Title: "What can weigh most emotionally upon leaving your home country?",
         q3Hint: "(People, places, food, customs, bonds, language, routine, or life back home).",
         q4Title: "What helps you or others cope with and face these difficulties?",
         q4Hint: "(A person, connection, community, resource, skill, or opportunity).",
@@ -603,7 +614,7 @@
         q8Title: "Where do I belong when my story exists between two places?",
         q8Hint: "(There is no right answer. Write whatever this question awakens in you).",
         resultTitle: "Map of My Story",
-        resultDesc: "A reflective overview integrating your challenges, resources, and spaces of belonging.",
+        resultDesc: "An reflective overview integrating your challenges, resources, and spaces of belonging.",
         colChal: "⚠️ Challenges & Vulnerabilities",
         colStr: "🌱 Resources & Strengths",
         colFut: "🛡️ Protection & Necessary Changes",
@@ -617,11 +628,13 @@
         quote: "“Resilience does not mean the absence of suffering; it also means finding resources, bonds, and paths to navigate through it.”",
         supportTitle: "🌱 You don't have to face everything alone",
         supportSub: "Official resources for guidance and support:",
+        cefit: "🧠 CEFI POA - Psychological Support",
+        cefip: "General information, welcoming, and specialized psychological support.",
+        cefil: "Access CEFI portal →",
         r1t: "🇧🇷 Immigrant Services", r1d: "Migratory registration, refugee status, and residency.",
         r2t: "⚖️ Rights & Migration", r2d: "Human rights and social integration guidelines.",
         r3t: "💼 Labor & Employment", r3d: "Work permits and formal employment support.",
         r4t: "🏠 Social Assistance", r4d: "Community social services and family support.",
-        r5t: "🧭 Federal Police", r5d: "Official appointments and document issuance.",
         r6t: "🏥 Public Healthcare", r6d: "Free and universal healthcare access through SUS.",
         linkText: "Access official service →",
         btnRestart: "Restart"
@@ -669,11 +682,14 @@
       document.getElementById('t-support-sub').innerText = dict.supportSub;
       document.getElementById('t-btn-restart').innerText = dict.btnRestart;
 
+      document.getElementById('t-cefit').innerText = dict.cefit;
+      document.getElementById('t-cefip').innerText = dict.cefip;
+      document.getElementById('t-cefil').innerText = dict.cefil;
+
       document.getElementById('t-r1-t').innerText = dict.r1t; document.getElementById('t-r1-d').innerText = dict.r1d;
       document.getElementById('t-r2-t').innerText = dict.r2t; document.getElementById('t-r2-d').innerText = dict.r2d;
       document.getElementById('t-r3-t').innerText = dict.r3t; document.getElementById('t-r3-d').innerText = dict.r3d;
       document.getElementById('t-r4-t').innerText = dict.r4t; document.getElementById('t-r4-d').innerText = dict.r4d;
-      document.getElementById('t-r5-t').innerText = dict.r5t; document.getElementById('t-r5-d').innerText = dict.r5d;
       document.getElementById('t-r6-t').innerText = dict.r6t; document.getElementById('t-r6-d').innerText = dict.r6d;
       document.querySelectorAll('.t-r-link').forEach(link => link.innerText = dict.linkText);
 
