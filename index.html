@@ -53,6 +53,8 @@
     .btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
     .btn-secondary { background: #f1f5f9; color: var(--text); border: 1px solid var(--border); width: auto; min-width: 120px; }
     .btn-secondary:hover { background: #e2e8f0; }
+    .btn-print { background: #0f172a; color: white; }
+    .btn-print:hover { background: #1e293b; }
 
     /* Barra de Progresso & Passos */
     .progress-container { margin-bottom: 28px; }
@@ -96,6 +98,15 @@
     .resource-card a:hover { text-decoration: underline; }
     
     .hidden { display: none !important; }
+
+    /* Estilos de Impressão */
+    @media print {
+      body { background: white; color: black; padding: 0; display: block; }
+      .lang-bar, .btn-group, #t-support-title, #t-support-sub, .resources-grid, .quote-box, .btn-secondary, .btn-print { display: none !important; }
+      .card { box-shadow: none; border: none; padding: 0; margin: 0; }
+      .container { max-width: 100%; }
+      .map-box, .box-belong { break-inside: avoid; border: 1px solid #ccc !important; }
+    }
   </style>
 </head>
 <body>
@@ -163,7 +174,7 @@
         <div class="char-count"><span id="c2">0</span>/600</div>
       </div>
 
-      <!-- Passo 3 (ATUALIZADO) -->
+      <!-- Passo 3 -->
       <div id="step-3" class="form-step hidden">
         <div class="question-title" id="t-q3-title">O que pode pesar mais emocionalmente pela saída do seu país?</div>
         <div class="question-hint" id="t-q3-hint">(Pode pensar em pessoas, lugares, comidas, costumes, vínculos, língua, rotina ou outras partes da vida no seu país).</div>
@@ -315,7 +326,10 @@
         </div>
       </div>
 
-      <button class="btn btn-secondary" style="width: 100%; margin-top: 24px;" onclick="goToScreen('home')" id="t-btn-restart">Refazer reflexão</button>
+      <div style="display: flex; gap: 12px; margin-top: 24px;">
+        <button class="btn btn-print" style="flex: 1;" onclick="window.print()" id="t-btn-print">🖨️ Imprimir / Salvar PDF</button>
+        <button class="btn btn-secondary" style="flex: 1;" onclick="goToScreen('home')" id="t-btn-restart">Refazer reflexão</button>
+      </div>
     </div>
   </div>
 
@@ -372,6 +386,7 @@
         r4t: "🏠 Assistência social", r4d: "Rede de assistência social (CRAS/CREAS) para acolhimento.",
         r6t: "🏥 Saúde Pública", r6d: "Acesso gratuito e acolhimento nas unidades de saúde do SUS.",
         linkText: "Acessar serviço oficial →",
+        btnPrint: "🖨️ Imprimir / Salvar PDF",
         btnRestart: "Refazer reflexão"
       },
       'pt-PT': {
@@ -425,6 +440,7 @@
         r4t: "🏠 Apoio Social", r4d: "Rede de assistência e acolhimento municipal.",
         r6t: "🏥 Saúde Pública", r6d: "Acesso universal e gratuito aos cuidados de saúde (SUS).",
         linkText: "Consultar serviço oficial →",
+        btnPrint: "🖨️ Imprimir / Guardar PDF",
         btnRestart: "Refazer reflexão"
       },
       'es': {
@@ -478,6 +494,7 @@
         r4t: "🏠 Asistencia Social", r4d: "Red comunitaria de acogida (CRAS/CREAS).",
         r6t: "🏥 Salud Pública", r6d: "Acceso gratuito y universal al sistema de salud (SUS).",
         linkText: "Acceder al servicio oficial →",
+        btnPrint: "🖨️ Imprimir / Guardar PDF",
         btnRestart: "Reiniciar reflexión"
       },
       'fr': {
@@ -531,6 +548,7 @@
         r4t: "🏠 Assistance Sociale", r4d: "Réseau public d'accueil et orientation sociale.",
         r6t: "🏥 Santé Publique", r6d: "Accès universel et gratuit aux soins (SUS).",
         linkText: "Consulter le service officiel →",
+        btnPrint: "🖨️ Imprimer / Enregistrer PDF",
         btnRestart: "Recommencer"
       },
       'it': {
@@ -584,6 +602,7 @@
         r4t: "🏠 Assistenza Sociale", r4d: "Rete territoriale di accoglienza e supporto familiare.",
         r6t: "🏥 Sanità Pubblica", r6d: "Accesso garantito e gratuito al sistema sanitario (SUS).",
         linkText: "Accedi al portale ufficiale →",
+        btnPrint: "🖨️ Stampa / Salva PDF",
         btnRestart: "Ricomincia"
       },
       'en': {
@@ -637,6 +656,7 @@
         r4t: "🏠 Social Assistance", r4d: "Community social services and family support.",
         r6t: "🏥 Public Healthcare", r6d: "Free and universal healthcare access through SUS.",
         linkText: "Access official service →",
+        btnPrint: "🖨️ Print / Save PDF",
         btnRestart: "Restart"
       }
     };
@@ -680,6 +700,7 @@
       document.getElementById('t-quote').innerText = dict.quote;
       document.getElementById('t-support-title').innerText = dict.supportTitle;
       document.getElementById('t-support-sub').innerText = dict.supportSub;
+      document.getElementById('t-btn-print').innerText = dict.btnPrint;
       document.getElementById('t-btn-restart').innerText = dict.btnRestart;
 
       document.getElementById('t-cefit').innerText = dict.cefit;
