@@ -129,7 +129,7 @@
   <div class="container">
     <div class="top-bar">
       <div class="brand-pill">
-        <img class="logo-circle js-logo-circle" src="" alt="FACEFI e CEFI" />
+        <img class="logo-circle js-logo-circle" src="logo-facefi-cefi.jpg" alt="FACEFI e CEFI" />
         <span class="brand-pill-label" id="t-top-brand">FACEFI • CEFI</span>
       </div>
 
@@ -149,7 +149,7 @@
     <!-- TELA 1: HOME -->
     <div id="screen-home" class="card">
       <div class="academic-header">
-        <img class="logo-circle-hero js-logo-circle" src="" alt="Logo circular FACEFI e CEFI" />
+        <img class="logo-circle-hero js-logo-circle" src="logo-facefi-cefi.jpg" alt="Logo circular FACEFI e CEFI" />
         <div class="academic-badge" id="t-badge">PROJETO ACADÊMICO • PSICOLOGIA • 2026/2</div>
         <h3 id="t-inst">Faculdade do CEFI</h3>
         <p><strong id="t-disc-lbl">Disciplina:</strong> <span id="t-disc-val">Emoções, Sofrimento e Resiliência</span></p>
@@ -185,7 +185,7 @@
       </div>
 
       <button class="btn" onclick="startForm()" id="t-btn-start">Começar a reflexão</button>
-      <p class="privacy-note" id="t-privacy-note">Suas respostas não ficaram salvas no canal e ninguém tem acesso aos seus dados e a suas respostas. Elas são suporte para você poder se conhecer mais de você mesmo e saber onde procurar ajuda quando precisar de um suporte, sem exposição da sua imagem.</p>
+      <p class="privacy-note" id="t-privacy-note">Suas respostas não ficam salvas no canal e ninguém tem acesso aos seus dados e a suas respostas. Elas são suporte para você poder se conhecer mais de você mesmo e saber onde procurar ajuda quando precisar de um suporte, sem exposição da sua imagem.</p>
     </div>
 
     <!-- TELA 2: FORMULÁRIO PASSO A PASSO (8 ETAPAS) -->
@@ -270,7 +270,7 @@
     <!-- TELA 3: MAPA FINAL -->
     <div id="screen-result" class="card hidden">
       <div class="result-top-logo">
-        <img class="logo-circle-hero js-logo-circle" src="" alt="Logo circular FACEFI e CEFI" />
+        <img class="logo-circle-hero js-logo-circle" src="logo-facefi-cefi.jpg" alt="Logo circular FACEFI e CEFI" />
       </div>
       <h2 id="t-result-title" style="color: var(--primary); margin-bottom: 4px; text-align: center;">Mapa da Minha História</h2>
       <p class="subtitle" id="t-result-desc" style="font-size: 0.95rem;">Um panorama reflexivo integrando seus desafios, recursos e espaços de pertencimento.</p>
@@ -337,7 +337,9 @@
           <!-- CARD CEFI POA -->
           <div class="resource-card">
             <h4 id="t-cefit">🧠 CEFI POA - Suporte Psicológico</h4>
-            <p id="t-cefip">Informações gerais, acolhimento e suporte psicológico especializado. (SE PRECISAR DE AJUDA PSICOLÓGICA, DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES.)</p>
+            <p id="t-cefip" style="white-space: pre-line;">Informações gerais, acolhimento e suporte psicológico especializado.
+
+SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SACEFI) - 51 9420-7006 (WhatsApp), e DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES para que eles te dêem suporte.</p>
             <a href="https://cefipoa.com.br/br/informacoes-gerais" target="_blank" id="t-cefil">Acessar portal do CEFI →</a>
           </div>
           <div class="resource-card">
@@ -376,8 +378,7 @@
   </div>
 
   <script>
-    // Substitua pelo caminho do arquivo da imagem circular ou pela string data:image/...
-    const LOGO_CIRCULAR_SRC = "logo-circular-facefi-cefi.jpg";
+    const LOGO_CIRCULAR_SRC = "logo-facefi-cefi.jpg";
 
     document.querySelectorAll('.js-logo-circle').forEach(img => {
       if (LOGO_CIRCULAR_SRC) {
@@ -405,7 +406,7 @@
         disclaimerTitle: "Esta ferramenta não é um teste psicológico nem uma avaliação clínica.",
         disclaimer: "Suas respostas são usadas para construir seu mapa reflexivo individual. A ferramenta não requer cadastro prévio.",
         btnStart: "Começar a reflexão",
-        privacyNote: "Suas respostas não ficaram salvas no canal e ninguém tem acesso aos seus dados e a suas respostas. Elas são suporte para você poder se conhecer mais de você mesmo e saber onde procurar ajuda quando precisar de um suporte, sem exposição da sua imagem.",
+        privacyNote: "Suas respostas não ficam salvas no canal e ninguém tem acesso aos seus dados e a suas respostas. Elas são suporte para você poder se conhecer mais de você mesmo e saber onde procurar ajuda quando precisar de um suporte, sem exposição da sua imagem.",
         stepPrefix: "ETAPA",
         stepOf: "DE",
         btnPrev: "Voltar",
@@ -443,7 +444,7 @@
         supportTitle: "🌱 Você não precisa enfrentar tudo sozinho",
         supportSub: "Se alguma questão merecer cuidado ou informação oficial, estes são pontos de partida:",
         cefit: "🧠 CEFI POA - Suporte Psicológico",
-        cefip: "Informações gerais, acolhimento e suporte psicológico especializado. (SE PRECISAR DE AJUDA PSICOLÓGICA, DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES.)",
+        cefip: "Informações gerais, acolhimento e suporte psicológico especializado.\n\nSE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SACEFI) - 51 9420-7006 (WhatsApp), e DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES para que eles te dêem suporte.",
         cefil: "Acessar portal do CEFI →",
         r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registro migratório, residência, refúgio e naturalização.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações oficiais sobre direitos e políticas migratórias.",
@@ -511,7 +512,7 @@
         supportTitle: "🌱 Não precisa de enfrentar tudo sozinho",
         supportSub: "Se alguma questão merecer cuidado ou apoio institucional:",
         cefit: "🧠 CEFI POA - Apoio Psicológico",
-        cefip: "Informações gerais, acolhimento e suporte psicológico especializado. (SE PRECISAR DE AJUDA PSICOLÓGICA, DIGA QUE PERTENCE AO GRUPO DOS IMIGRANTES.)",
+        cefip: "Informações gerais, acolhimento e suporte psicológico especializado.\n\nSE PRECISAR DE AJUDA PSICOLÓGICA, envie mensagem para a Receção Clínica (SACEFI) - +55 51 9420-7006 (WhatsApp), e DIGA QUE PERTENCE AO GRUPO DOS IMIGRANTES para que lhe prestem apoio.",
         cefil: "Aceder ao portal do CEFI →",
         r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registo migratório, residência e legalização.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações sobre integração e direitos humanos.",
@@ -579,7 +580,7 @@
         supportTitle: "🌱 No tienes que enfrentar todo solo",
         supportSub: "Puntos de partida oficiales para orientación y trámites:",
         cefit: "🧠 CEFI POA - Apoyo Psicológico",
-        cefip: "Información general, acogida y apoyo psicológico especializado. (SI NECESITAS AYUDA PSICOLÓGICA, INDICA QUE PERTENECES AL GRUPO DE LOS INMIGRANTES.)",
+        cefip: "Información general, acogida y apoyo psicológico especializado.\n\nSI NECESITAS AYUDA PSICOLÓGICA, envía un mensaje a la Recepción Clínica (SACEFI) - +55 51 9420-7006 (WhatsApp), y DI QUE PERTENECES AL GRUPO DE LOS INMIGRANTES para que te brinden apoyo.",
         cefil: "Acceder al portal de CEFI →",
         r1t: "🇧🇷 Servicios para Inmigrantes", r1d: "Registro migratorio, refugio y regularización.",
         r2t: "⚖️ Derechos y Migración", r2d: "Información sobre integración y derechos legales.",
@@ -647,7 +648,7 @@
         supportTitle: "🌱 Vous n'avez pas à tout affronter seul(e)",
         supportSub: "Ressources officielles pour orientation et soutien :",
         cefit: "🧠 CEFI POA - Soutien Psychologique",
-        cefip: "Informations générales, accueil et soutien psychologique spécialisé. (SI VOUS AVEZ BESOIN D'UNE AIDE PSYCHOLOGIQUE, PRÉCISEZ QUE VOUS APPARTENEZ AU GROUPE DES IMMIGRANTS.)",
+        cefip: "Informations générales, accueil et soutien psychologique spécialisé.\n\nSI VOUS AVEZ BESOIN D'UNE AIDE PSYCHOLOGIQUE, envoyez un message à l'Accueil Clinique (SACEFI) - +55 51 9420-7006 (WhatsApp), et DITES QUE VOUS APPARTENEZ AU GROUPE DES IMMIGRANTS afin qu'ils vous accompagnent.",
         cefil: "Accéder au portail du CEFI →",
         r1t: "🇧🇷 Services pour Immigrants", r1d: "Enregistrement migratoire, asile et titres de séjour.",
         r2t: "⚖️ Droits et Migrations", r2d: "Politiques publiques et intégration sociale.",
@@ -715,7 +716,7 @@
         supportTitle: "🌱 Non devi affrontare tutto da solo/a",
         supportSub: "Punti di riferimento istituzionali:",
         cefit: "🧠 CEFI POA - Supporto Psicologico",
-        cefip: "Informazioni generali, accoglienza e supporto psicologico specializzato. (SE HAI BISOGNO DI AIUTO PSICOLOGICO, DICI CHE APPARTIENI AL GRUPPO DEGLI IMMIGRATI.)",
+        cefip: "Informazioni generali, accoglienza e supporto psicologico specializzato.\n\nSE HAI BISOGNO DI AIUTO PSICOLOGICO, invia un messaggio alla Reception Clinica (SACEFI) - +55 51 9420-7006 (WhatsApp), e DI' CHE APPARTIENI AL GRUPPO DEGLI IMMIGRATI affinché ti possano dare supporto.",
         cefil: "Accedi al portale CEFI →",
         r1t: "🇧🇷 Servizi per Immigrati", r1d: "Registrazione, permessi di soggiorno e protezione.",
         r2t: "⚖️ Diritti e Migrazioni", r2d: "Orientamento ai diritti e integrazione sociale.",
@@ -783,7 +784,7 @@
         supportTitle: "🌱 You don't have to face everything alone",
         supportSub: "Official resources for guidance and support:",
         cefit: "🧠 CEFI POA - Psychological Support",
-        cefip: "General information, welcoming, and specialized psychological support. (IF YOU NEED PSYCHOLOGICAL HELP, SAY THAT YOU BELONG TO THE IMMIGRANTS GROUP.)",
+        cefip: "General information, welcoming, and specialized psychological support.\n\nIF YOU NEED PSYCHOLOGICAL HELP, send a message to Clinical Reception (SACEFI) - +55 51 9420-7006 (WhatsApp), and SAY THAT YOU BELONG TO THE IMMIGRANTS GROUP so they can support you.",
         cefil: "Access CEFI portal →",
         r1t: "🇧🇷 Immigrant Services", r1d: "Migratory registration, refugee status, and residency.",
         r2t: "⚖️ Rights & Migration", r2d: "Human rights and social integration guidelines.",
