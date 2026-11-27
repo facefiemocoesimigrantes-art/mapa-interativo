@@ -30,8 +30,15 @@
     body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
     .container { max-width: 800px; margin: 0 auto; width: 100%; }
     .card { background: var(--card-bg); border-radius: var(--radius); padding: 36px 28px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 24px; transition: all 0.3s ease; }
-    
-    .lang-bar { display: flex; justify-content: flex-end; margin-bottom: 16px; gap: 8px; align-items: center; }
+
+    /* Barra superior com selo circular e seletor de idioma */
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
+    .brand-pill { display: inline-flex; align-items: center; gap: 10px; background: white; border: 1px solid var(--border); padding: 5px 12px 5px 6px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+    .brand-pill-label { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.3px; }
+    .logo-circle { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; border: 1.5px solid #e2e8f0; flex-shrink: 0; }
+    .logo-circle-hero { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 12px auto; border: 2px solid #e2e8f0; box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08); }
+
+    .lang-bar { display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
     select { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border); background: white; font-weight: 600; cursor: pointer; color: var(--text); font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
     select:focus { border-color: var(--primary); }
 
@@ -40,12 +47,20 @@
     .academic-badge { display: inline-block; background: #ede9fe; color: var(--primary); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
     .academic-header h3 { font-size: 1.15rem; color: #0f172a; margin-bottom: 4px; font-weight: 700; }
     .academic-header p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 4px; }
-    .academic-header .authors { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+    .academic-header .authors { font-size: 0.85rem; color: var(--text); margin-top: 12px; margin-bottom: 10px; line-height: 1.5; }
+    .academic-header .professor { font-size: 0.88rem; color: var(--text-muted); margin-top: 6px; }
 
     .main-title { text-align: center; font-size: 2.1rem; color: var(--primary); margin-bottom: 12px; font-weight: 800; letter-spacing: -0.5px; }
     .subtitle { text-align: center; font-size: 1rem; color: var(--text-muted); margin-bottom: 24px; }
     .hero-img { width: 100%; height: 240px; object-fit: cover; border-radius: var(--radius); margin-bottom: 20px; }
+
+    .editorial-block { background: #faf8ff; border: 1px solid #e9d5ff; border-radius: 12px; padding: 18px 20px; margin-bottom: 18px; }
+    .editorial-block h3 { font-size: 1rem; color: var(--primary); margin-bottom: 8px; font-weight: 700; }
+    .editorial-block p { font-size: 0.93rem; color: var(--text); margin-bottom: 10px; }
+    .editorial-block p:last-child { margin-bottom: 0; }
+
     .notice { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 24px; }
+    .privacy-note { margin-top: 14px; font-size: 0.84rem; color: var(--text-muted); background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 16px; border-radius: 10px; text-align: center; line-height: 1.5; }
 
     /* Botões */
     .btn-group { display: flex; gap: 12px; margin-top: 24px; }
@@ -61,15 +76,16 @@
     .progress-bar-bg { width: 100%; height: 8px; background-color: #f1f5f9; border-radius: 999px; overflow: hidden; }
     .progress-bar-fill { height: 100%; width: 12.5%; background-color: var(--primary); border-radius: 999px; transition: width 0.3s ease; }
     .step-counter { display: inline-block; font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
-    
+
     .question-title { font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.4; }
     .question-hint { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 20px; }
-    
+
     textarea { width: 100%; min-height: 140px; padding: 16px; border-radius: 12px; border: 1.5px solid var(--border); font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.2s, box-shadow 0.2s; background: #fafafa; }
     textarea:focus { border-color: var(--primary); background: #ffffff; box-shadow: 0 0 0 3px rgba(92, 58, 146, 0.1); }
     .char-count { font-size: 0.8rem; color: var(--text-muted); text-align: right; margin-top: 6px; }
 
     /* Resultado Final */
+    .result-top-logo { text-align: center; margin-bottom: 10px; }
     .map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
     @media (max-width: 640px) { .map-grid { grid-template-columns: 1fr; } }
     .map-box { padding: 20px; border-radius: 12px; border: 1px solid transparent; }
@@ -88,7 +104,7 @@
     .item-result p { font-size: 0.95rem; color: var(--text); }
 
     .quote-box { background: var(--primary-light); border-left: 4px solid var(--primary); padding: 18px; border-radius: 8px; font-style: italic; color: var(--primary); text-align: center; margin: 24px 0; font-size: 0.95rem; }
-    
+
     .resources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
     @media (max-width: 640px) { .resources-grid { grid-template-columns: 1fr; } }
     .resource-card { border: 1px solid #e9d5ff; padding: 16px; border-radius: 10px; background: #faf5ff; }
@@ -96,13 +112,13 @@
     .resource-card p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
     .resource-card a { font-size: 0.82rem; color: var(--primary); font-weight: 600; text-decoration: none; }
     .resource-card a:hover { text-decoration: underline; }
-    
+
     .hidden { display: none !important; }
 
     /* Estilos de Impressão */
     @media print {
       body { background: white; color: black; padding: 0; display: block; }
-      .lang-bar, .btn-group, #t-support-title, #t-support-sub, .resources-grid, .quote-box, .btn-secondary, .btn-print { display: none !important; }
+      .top-bar, .btn-group, #t-support-title, #t-support-sub, .resources-grid, .quote-box, .btn-secondary, .btn-print { display: none !important; }
       .card { box-shadow: none; border: none; padding: 0; margin: 0; }
       .container { max-width: 100%; }
       .map-box, .box-belong { break-inside: avoid; border: 1px solid #ccc !important; }
@@ -111,42 +127,65 @@
 </head>
 <body>
   <div class="container">
-    <div class="lang-bar">
-      <span>🌐</span>
-      <select id="langSelect" onchange="changeLang(this.value)">
-        <option value="pt-BR">🇧🇷 Português (Brasil)</option>
-        <option value="pt-PT">🇵🇹 Português (Portugal)</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="it">🇮🇹 Italiano</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
+    <div class="top-bar">
+      <div class="brand-pill">
+        <img class="logo-circle js-logo-circle" src="" alt="FACEFI e CEFI" />
+        <span class="brand-pill-label" id="t-top-brand">FACEFI • CEFI</span>
+      </div>
+
+      <div class="lang-bar">
+        <span>🌐</span>
+        <select id="langSelect" onchange="changeLang(this.value)">
+          <option value="pt-BR">🇧🇷 Português (Brasil)</option>
+          <option value="pt-PT">🇵🇹 Português (Portugal)</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="it">🇮🇹 Italiano</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+      </div>
     </div>
 
     <!-- TELA 1: HOME -->
     <div id="screen-home" class="card">
       <div class="academic-header">
-        <div class="academic-badge">PROJETO ACADÊMICO • PSICOLOGIA • 2026/2</div>
-        <h3>Faculdade do CEFI</h3>
-        <p><strong>Disciplina:</strong> Emoções, Sofrimento e Resiliência</p>
-        <p><strong>Professora:</strong> Mara Regina Soares Wanderley Lins</p>
+        <img class="logo-circle-hero js-logo-circle" src="" alt="Logo circular FACEFI e CEFI" />
+        <div class="academic-badge" id="t-badge">PROJETO ACADÊMICO • PSICOLOGIA • 2026/2</div>
+        <h3 id="t-inst">Faculdade do CEFI</h3>
+        <p><strong id="t-disc-lbl">Disciplina:</strong> <span id="t-disc-val">Emoções, Sofrimento e Resiliência</span></p>
         <div class="authors">
-          <strong>Desenvolvido por:</strong><br>
+          <strong id="t-authors-lbl">Desenvolvido por:</strong><br>
           Rafaela Marcotti, Pablo Girardi, Fernando Matias Valenzuela Carlucci, Maria Eduarda Zambiazi e Maria Carolina Bortoloti.
         </div>
+        <p class="professor"><strong id="t-prof-lbl">Professora:</strong> Mara Regina Soares Wanderley Lins</p>
       </div>
 
       <h1 class="main-title" id="t-title">MAPA DA MINHA HISTÓRIA</h1>
       <p class="subtitle" id="t-subtitle">Uma experiência interativa para refletir sobre caminhos, emoções, desafios, vínculos e forças presentes na experiência migratória.</p>
-      
+
       <img class="hero-img" src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85" alt="Caminho e acolhimento" />
-      
+
+      <!-- Bloco sobre Emoções -->
+      <div class="editorial-block">
+        <h3 id="t-emotions-title">💜 Emoções, autoconhecimento e acolhimento</h3>
+        <p id="t-emotions-p1">As emoções fazem parte da nossa experiência diária e indicam como estamos vivendo cada momento. Praticar o autoconhecimento ajuda a nomear o que sentimos, reconhecer quando não estamos bem e entender que pedir ajuda é um sinal de cuidado — não de fraqueza.</p>
+        <p id="t-emotions-p2">Contar com suporte e um bom acolhimento social faz diferença para atravessar momentos difíceis com mais segurança e dignidade.</p>
+      </div>
+
+      <!-- Bloco sobre Sofrimentos Humanos, Migração, Refúgio e Apatridia -->
+      <div class="editorial-block">
+        <h3 id="t-migration-title">🌍 Sofrimentos humanos, migração, refúgio e apatridia</h3>
+        <p id="t-migration-p1">Os processos de migração, refúgio e apatridia envolvem histórias complexas e sofrimentos humanos reais. No Brasil, existem espaços e redes de apoio dedicados a orientar e acolher essas trajetórias.</p>
+        <p id="t-migration-p2">As perguntas a seguir foram pensadas para apoiar seu autoconhecimento sobre o que você sente; ao final, você encontrará caminhos e indicações para buscar ajuda. Ao longo desse percurso, lembre-se de valorizar e relembrar a sua cultura, respeitar o seu corpo e compreender o que significa abrir-se para um novo momento de vida.</p>
+      </div>
+
       <div class="notice">
         <strong>ℹ️ <span id="t-disclaimer-title">Esta ferramenta não é um teste psicológico nem uma avaliação clínica.</span></strong>
         <p id="t-disclaimer">Suas respostas são usadas para construir seu mapa reflexivo individual. A ferramenta não requer cadastro prévio.</p>
       </div>
-      
+
       <button class="btn" onclick="startForm()" id="t-btn-start">Começar a reflexão</button>
+      <p class="privacy-note" id="t-privacy-note">Suas respostas não ficaram salvas no canal e ninguém tem acesso aos seus dados e a suas respostas. Elas são suporte para você poder se conhecer mais de você mesmo e saber onde procurar ajuda quando precisar de um suporte, sem exposição da sua imagem.</p>
     </div>
 
     <!-- TELA 2: FORMULÁRIO PASSO A PASSO (8 ETAPAS) -->
@@ -176,7 +215,7 @@
 
       <!-- Passo 3 -->
       <div id="step-3" class="form-step hidden">
-        <div class="question-title" id="t-q3-title">O que pode pesar mais emocionalmente pela saída do seu país?</div>
+        <div class="question-title" id="t-q3-title">Quais sentimentos surgiram quando você saiu de seu país?</div>
         <div class="question-hint" id="t-q3-hint">(Pode pensar em pessoas, lugares, comidas, costumes, vínculos, língua, rotina ou outras partes da vida no seu país).</div>
         <textarea id="q3" maxlength="600" oninput="updateCount('q3', 'c3')" placeholder="Escreva aqui..."></textarea>
         <div class="char-count"><span id="c3">0</span>/600</div>
@@ -230,6 +269,9 @@
 
     <!-- TELA 3: MAPA FINAL -->
     <div id="screen-result" class="card hidden">
+      <div class="result-top-logo">
+        <img class="logo-circle-hero js-logo-circle" src="" alt="Logo circular FACEFI e CEFI" />
+      </div>
       <h2 id="t-result-title" style="color: var(--primary); margin-bottom: 4px; text-align: center;">Mapa da Minha História</h2>
       <p class="subtitle" id="t-result-desc" style="font-size: 0.95rem;">Um panorama reflexivo integrando seus desafios, recursos e espaços de pertencimento.</p>
 
@@ -246,7 +288,7 @@
             <p id="out-q2">-</p>
           </div>
           <div class="item-result">
-            <strong id="t-lbl-q3">Perdas & Saudades:</strong>
+            <strong id="t-lbl-q3">Sentimentos na Saída:</strong>
             <p id="out-q3">-</p>
           </div>
         </div>
@@ -295,7 +337,7 @@
           <!-- CARD CEFI POA -->
           <div class="resource-card">
             <h4 id="t-cefit">🧠 CEFI POA - Suporte Psicológico</h4>
-            <p id="t-cefip">Informações gerais, acolhimento e suporte psicológico especializado.</p>
+            <p id="t-cefip">Informações gerais, acolhimento e suporte psicológico especializado. (SE PRECISAR DE AJUDA PSICOLÓGICA, DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES.)</p>
             <a href="https://cefipoa.com.br/br/informacoes-gerais" target="_blank" id="t-cefil">Acessar portal do CEFI →</a>
           </div>
           <div class="resource-card">
@@ -334,13 +376,36 @@
   </div>
 
   <script>
+    // Substitua pelo caminho do arquivo da imagem circular ou pela string data:image/...
+    const LOGO_CIRCULAR_SRC = "logo-circular-facefi-cefi.jpg";
+
+    document.querySelectorAll('.js-logo-circle').forEach(img => {
+      if (LOGO_CIRCULAR_SRC) {
+        img.src = LOGO_CIRCULAR_SRC;
+      }
+    });
+
     const translations = {
       'pt-BR': {
+        topBrand: "FACEFI • CEFI",
+        badge: "PROJETO ACADÊMICO • PSICOLOGIA • 2026/2",
+        inst: "Faculdade do CEFI",
+        discLbl: "Disciplina:",
+        discVal: "Emoções, Sofrimento e Resiliência",
+        authorsLbl: "Desenvolvido por:",
+        profLbl: "Professora:",
         title: "MAPA DA MINHA HISTÓRIA",
         subtitle: "Uma experiência interativa para refletir sobre caminhos, emoções, desafios, vínculos e forças presentes na experiência migratória.",
+        emotionsTitle: "💜 Emoções, autoconhecimento e acolhimento",
+        emotionsP1: "As emoções fazem parte da nossa experiência diária e indicam como estamos vivendo cada momento. Praticar o autoconhecimento ajuda a nomear o que sentimos, reconhecer quando não estamos bem e entender que pedir ajuda é um sinal de cuidado — não de fraqueza.",
+        emotionsP2: "Contar com suporte e um bom acolhimento social faz diferença para atravessar momentos difíceis com mais segurança e dignidade.",
+        migrationTitle: "🌍 Sofrimentos humanos, migração, refúgio e apatridia",
+        migrationP1: "Os processos de migração, refúgio e apatridia envolvem histórias complexas e sofrimentos humanos reais. No Brasil, existem espaços e redes de apoio dedicados a orientar e acolher essas trajetórias.",
+        migrationP2: "As perguntas a seguir foram pensadas para apoiar seu autoconhecimento sobre o que você sente; ao final, você encontrará caminhos e indicações para buscar ajuda. Ao longo desse percurso, lembre-se de valorizar e relembrar a sua cultura, respeitar o seu corpo e compreender o que significa abrir-se para um novo momento de vida.",
         disclaimerTitle: "Esta ferramenta não é um teste psicológico nem uma avaliação clínica.",
         disclaimer: "Suas respostas são usadas para construir seu mapa reflexivo individual. A ferramenta não requer cadastro prévio.",
         btnStart: "Começar a reflexão",
+        privacyNote: "Suas respostas não ficaram salvas no canal e ninguém tem acesso aos seus dados e a suas respostas. Elas são suporte para você poder se conhecer mais de você mesmo e saber onde procurar ajuda quando precisar de um suporte, sem exposição da sua imagem.",
         stepPrefix: "ETAPA",
         stepOf: "DE",
         btnPrev: "Voltar",
@@ -350,7 +415,7 @@
         q1Hint: "(Pense em situações, sentimentos, condições ou experiências).",
         q2Title: "Quais situações ou experiências deixaram a vida mais difícil para quem imigrou ou está imigrando?",
         q2Hint: "(Pode falar sobre cotidiano, relações, trabalho, moradia, idioma ou documentação).",
-        q3Title: "O que pode pesar mais emocionalmente pela saída do seu país?",
+        q3Title: "Quais sentimentos surgiram quando você saiu de seu país?",
         q3Hint: "(Pode pensar em pessoas, lugares, comidas, costumes, vínculos, língua, rotina ou outras partes da vida no seu país).",
         q4Title: "O que ajuda você ou outras pessoas a enfrentar essas dificuldades?",
         q4Hint: "(Pode ser uma pessoa, vínculo, comunidade, recurso, habilidade ou oportunidade).",
@@ -370,7 +435,7 @@
         resBelong: "💜 Onde eu pertenço quando minha história está em dois lugares?",
         lblQ1: "Medos & Sentimentos:",
         lblQ2: "Dificuldades na Imigração:",
-        lblQ3: "Perdas & Saudades:",
+        lblQ3: "Sentimentos na Saída:",
         lblQ4: "Estratégias de Enfrentamento:",
         lblQ5: "Força & Esperança:",
         lblQ6: "Rede de Apoio:",
@@ -378,7 +443,7 @@
         supportTitle: "🌱 Você não precisa enfrentar tudo sozinho",
         supportSub: "Se alguma questão merecer cuidado ou informação oficial, estes são pontos de partida:",
         cefit: "🧠 CEFI POA - Suporte Psicológico",
-        cefip: "Informações gerais, acolhimento e suporte psicológico especializado.",
+        cefip: "Informações gerais, acolhimento e suporte psicológico especializado. (SE PRECISAR DE AJUDA PSICOLÓGICA, DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES.)",
         cefil: "Acessar portal do CEFI →",
         r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registro migratório, residência, refúgio e naturalização.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações oficiais sobre direitos e políticas migratórias.",
@@ -390,11 +455,25 @@
         btnRestart: "Refazer reflexão"
       },
       'pt-PT': {
+        topBrand: "FACEFI • CEFI",
+        badge: "PROJETO ACADÉMICO • PSICOLOGIA • 2026/2",
+        inst: "Faculdade do CEFI",
+        discLbl: "Disciplina:",
+        discVal: "Emoções, Sofrimento e Resiliência",
+        authorsLbl: "Desenvolvido por:",
+        profLbl: "Professora:",
         title: "MAPA DA MINHA HISTÓRIA",
         subtitle: "Uma experiência interativa para refletir sobre caminhos, emoções, desafios, laços e forças presentes na experiência migratória.",
+        emotionsTitle: "💜 Emoções, autoconhecimento e acolhimento",
+        emotionsP1: "As emoções fazem parte da nossa experiência quotidiana e mostram como estamos a viver cada fase. Praticar o autoconhecimento ajuda a reconhecer o que sentimos, perceber quando não estamos bem e compreender que pedir ajuda é um ato de cuidado — não de fraqueza.",
+        emotionsP2: "Ter apoio e um bom acolhimento social faz diferença para atravessar momentos difíceis com maior segurança e dignidade.",
+        migrationTitle: "🌍 Sofrimentos humanos, migração, refúgio e apatridia",
+        migrationP1: "Os percursos de migração, refúgio e apatridia envolvem histórias complexas e sofrimentos humanos reais. No Brasil, existem espaços e redes de apoio dedicados a orientar e acolher estas trajetórias.",
+        migrationP2: "As questões seguintes foram pensadas para apoiar o seu autoconhecimento sobre o que sente; no final, encontrará caminhos e indicações para pedir ajuda. Ao longo deste caminho, lembre-se de valorizar e recordar a sua cultura, respeitar o seu corpo e compreender o que significa abrir-se a um novo momento de vida.",
         disclaimerTitle: "Esta ferramenta não é um teste psicológico nem uma avaliação clínica.",
         disclaimer: "As suas respostas são utilizadas para construir o seu mapa reflexivo individual.",
         btnStart: "Começar a reflexão",
+        privacyNote: "As suas respostas não ficam guardadas no canal e ninguém tem acesso aos seus dados e às suas respostas. Servem de apoio para se conhecer melhor a si próprio e saber onde procurar ajuda quando precisar de apoio, sem exposição da sua imagem.",
         stepPrefix: "ETAPA",
         stepOf: "DE",
         btnPrev: "Voltar",
@@ -404,7 +483,7 @@
         q1Hint: "(Pense em situações, sentimentos, condições ou experiências).",
         q2Title: "Que situações ou experiências tornaram a vida mais difícil para quem emigrou ou está a emigrar?",
         q2Hint: "(Pode falar sobre o quotidiano, relações, trabalho, habitação, idioma ou documentação).",
-        q3Title: "O que pode pesar mais emocionalmente pela saída do seu país?",
+        q3Title: "Que sentimentos surgiram quando saiu do seu país?",
         q3Hint: "(Pense em pessoas, lugares, sabores, costumes, laços, língua ou rotinas).",
         q4Title: "O que ajuda a si ou a outras pessoas a enfrentar estas dificuldades?",
         q4Hint: "(Pode ser uma pessoa, laço, comunidade, recurso, competência ou oportunidade).",
@@ -424,7 +503,7 @@
         resBelong: "💜 Onde pertenço quando a minha história está em dois lugares?",
         lblQ1: "Medos & Sentimentos:",
         lblQ2: "Dificuldades na Emigração:",
-        lblQ3: "Perdas & Saudades:",
+        lblQ3: "Sentimentos na Saída:",
         lblQ4: "Estratégias de Superação:",
         lblQ5: "Força & Esperança:",
         lblQ6: "Rede de Apoio:",
@@ -432,7 +511,7 @@
         supportTitle: "🌱 Não precisa de enfrentar tudo sozinho",
         supportSub: "Se alguma questão merecer cuidado ou apoio institucional:",
         cefit: "🧠 CEFI POA - Apoio Psicológico",
-        cefip: "Informações gerais, acolhimento e suporte psicológico especializado.",
+        cefip: "Informações gerais, acolhimento e suporte psicológico especializado. (SE PRECISAR DE AJUDA PSICOLÓGICA, DIGA QUE PERTENCE AO GRUPO DOS IMIGRANTES.)",
         cefil: "Aceder ao portal do CEFI →",
         r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registo migratório, residência e legalização.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações sobre integração e direitos humanos.",
@@ -444,11 +523,25 @@
         btnRestart: "Refazer reflexão"
       },
       'es': {
+        topBrand: "FACEFI • CEFI",
+        badge: "PROYECTO ACADÉMICO • PSICOLOGÍA • 2026/2",
+        inst: "Faculdade do CEFI",
+        discLbl: "Asignatura:",
+        discVal: "Emociones, Sufrimiento y Resiliencia",
+        authorsLbl: "Desarrollado por:",
+        profLbl: "Profesora:",
         title: "MAPA DE MI HISTORIA",
         subtitle: "Una experiencia interactiva para reflexionar sobre caminos, emociones, desafíos, vínculos y fortalezas en la experiencia migratoria.",
+        emotionsTitle: "💜 Emociones, autoconocimiento y acogida",
+        emotionsP1: "Las emociones forman parte de nuestra experiencia diaria y muestran cómo vivimos cada momento. Practicar el autoconocimiento ayuda a nombrar lo que sentimos, reconocer cuándo no estamos bien y entender que pedir ayuda es un acto de cuidado, no de debilidad.",
+        emotionsP2: "Contar con apoyo y una buena acogida social marca la diferencia para atravesar momentos difíciles con mayor seguridad y dignidad.",
+        migrationTitle: "🌍 Sufrimientos humanos, migración, refugio y apatridia",
+        migrationP1: "Los procesos de migración, refugio y apatridia involucran historias complejas y sufrimientos humanos reales. En Brasil existen espacios y redes de apoyo dedicados a orientar y acoger estas trayectorias.",
+        migrationP2: "Las preguntas siguientes están pensadas para apoyar tu autoconocimiento sobre lo que sientes; al final encontrarás caminos y orientaciones para buscar ayuda. A lo largo de este recorrido, recuerda valorar y recordar tu cultura, respetar tu cuerpo y comprender qué significa abrirte a un nuevo momento de vida.",
         disclaimerTitle: "Esta herramienta no es un test psicológico ni una evaluación clínica.",
         disclaimer: "Tus respuestas se utilizan para construir tu mapa reflexivo individual.",
         btnStart: "Comenzar la reflexión",
+        privacyNote: "Tus respuestas no quedan guardadas en el canal y nadie tiene acceso a tus datos ni a tus respuestas. Sirven de apoyo para conocerte mejor a ti mismo y saber dónde buscar ayuda cuando necesites apoyo, sin exposición de tu imagen.",
         stepPrefix: "ETAPA",
         stepOf: "DE",
         btnPrev: "Atrás",
@@ -458,7 +551,7 @@
         q1Hint: "(Piensa en situaciones, sentimientos, condiciones o experiencias).",
         q2Title: "¿Qué situaciones o experiencias hicieron la vida más difícil para quien emigró o está emigrando?",
         q2Hint: "(Puedes hablar de vida cotidiana, relaciones, trabajo, vivienda, idioma o documentación).",
-        q3Title: "¿Qué puede pesar más emocionalmente al salir de tu país?",
+        q3Title: "¿Qué sentimientos surgieron cuando saliste de tu país?",
         q3Hint: "(Personas, lugares, comidas, costumbres, vínculos, idioma, rutina o vida cotidiana).",
         q4Title: "¿Qué te ayuda a ti o a otros a afrontar estas dificultades?",
         q4Hint: "(Puede ser una persona, vínculo, comunidad, recurso, habilidad u oportunidad).",
@@ -472,21 +565,21 @@
         q8Hint: "(No hay respuesta correcta. Escribe lo que esta pregunta despierta en ti).",
         resultTitle: "Mapa de Mi Historia",
         resultDesc: "Un panorama reflexivo que integra desafíos, recursos y espacios de pertenencia.",
-        colChal: "⚠️ Desafios & Vulnerabilidades",
+        colChal: "⚠️ Desafíos & Vulnerabilidades",
         colStr: "🌱 Recursos & Fortalezas",
         colFut: "🛡️ Protección & Cambios Necesarios",
         resBelong: "💜 ¿A dónde pertenezco cuando mi historia está en dos lugares?",
         lblQ1: "Miedos & Sentimientos:",
-        lblQ2: "Dificuldades en la Migración:",
-        lblQ3: "Pérdidas & Añoranzas:",
+        lblQ2: "Dificultades en la Migración:",
+        lblQ3: "Sentimientos al Salir:",
         lblQ4: "Estrategias de Afrontamiento:",
         lblQ5: "Fuerza & Esperanza:",
         lblQ6: "Red de Apoyo:",
-        quote: "“La resiliencia não significa ausência de sofrimento; também significa encontrar recursos, vínculos e caminhos para atravesarlo.”",
+        quote: "“La resiliencia no significa ausencia de sufrimiento; también significa encontrar recursos, vínculos y caminos para atravesarlo.”",
         supportTitle: "🌱 No tienes que enfrentar todo solo",
         supportSub: "Puntos de partida oficiales para orientación y trámites:",
         cefit: "🧠 CEFI POA - Apoyo Psicológico",
-        cefip: "Información general, acogida y apoyo psicológico especializado.",
+        cefip: "Información general, acogida y apoyo psicológico especializado. (SI NECESITAS AYUDA PSICOLÓGICA, INDICA QUE PERTENECES AL GRUPO DE LOS INMIGRANTES.)",
         cefil: "Acceder al portal de CEFI →",
         r1t: "🇧🇷 Servicios para Inmigrantes", r1d: "Registro migratorio, refugio y regularización.",
         r2t: "⚖️ Derechos y Migración", r2d: "Información sobre integración y derechos legales.",
@@ -498,11 +591,25 @@
         btnRestart: "Reiniciar reflexión"
       },
       'fr': {
+        topBrand: "FACEFI • CEFI",
+        badge: "PROJET ACADÉMIQUE • PSYCHOLOGIE • 2026/2",
+        inst: "Faculdade do CEFI",
+        discLbl: "Discipline :",
+        discVal: "Émotions, Souffrance et Résilience",
+        authorsLbl: "Développé par :",
+        profLbl: "Professeure :",
         title: "CARTE DE MON HISTOIRE",
         subtitle: "Une expérience interactive pour réfléchir aux parcours, émotions, défis, liens et forces présents dans l'expérience migratoire.",
+        emotionsTitle: "💜 Émotions, connaissance de soi et accueil",
+        emotionsP1: "Les émotions font partie de notre quotidien et montrent comment nous vivons chaque étape. Cultiver la connaissance de soi aide à nommer ce que l'on ressent, à reconnaître quand on ne va pas bien et à comprendre que demander de l'aide est un geste de soin, pas une faiblesse.",
+        emotionsP2: "Bénéficier d'un soutien et d'un accueil social bienveillant aide à traverser les moments difficiles avec plus de sécurité et de dignité.",
+        migrationTitle: "🌍 Souffrances humaines, migration, refuge et apatridie",
+        migrationP1: "Les parcours de migration, de refuge et d'apatridie recouvrent des histoires complexes et des souffrances humaines bien réelles. Au Brésil, des lieux et réseaux d'accompagnement orientent et accueillent ces trajectoires.",
+        migrationP2: "Les questions suivantes soutiennent votre connaissance de soi sur ce que vous ressentez ; à la fin, vous trouverez des pistes et ressources pour demander de l'aide. Tout au long de ce chemin, pensez à valoriser et vous rappeler votre culture, à respecter votre corps et à comprendre ce que signifie s'ouvrir à un nouveau moment de vie.",
         disclaimerTitle: "Cet outil n'est pas un test psychologique ni une évaluation clinique.",
         disclaimer: "Vos réponses sont utilisées pour générer votre carte réflexive.",
         btnStart: "Commencer la réflexion",
+        privacyNote: "Vos réponses ne restent pas enregistrées sur le canal et personne n'a accès à vos données ni à vos réponses. Elles constituent un soutien pour mieux vous connaître et savoir où chercher de l'aide lorsque vous avez besoin de soutien, sans exposition de votre image.",
         stepPrefix: "ÉTAPE",
         stepOf: "SUR",
         btnPrev: "Retour",
@@ -512,7 +619,7 @@
         q1Hint: "(Pensez aux situations, émotions, conditions ou expériences).",
         q2Title: "Quelles situations ou expériences ont rendu la vie plus difficile pour ceux qui ont émigré ou émigrent ?",
         q2Hint: "(Vie quotidienne, relations, travail, logement, langue ou papiers).",
-        q3Title: "Qu'est-ce qui peut peser le plus émotionnellement en quittant votre pays ?",
+        q3Title: "Quels sentiments ont émergé lorsque vous avez quitté votre pays ?",
         q3Hint: "(Personnes, lieux, cuisine, coutumes, liens, langue, routine).",
         q4Title: "Qu'est-ce qui vous aide, vous ou d'autres personnes, à surmonter ces difficultés ?",
         q4Hint: "(Une personne, un lien, une communauté, une ressource, une compétence).",
@@ -532,7 +639,7 @@
         resBelong: "💜 Où est-ce que j'appartiens quand mon histoire est entre deux endroits ?",
         lblQ1: "Peurs & Sentiments :",
         lblQ2: "Défis de l'Immigration :",
-        lblQ3: "Pertes & Nostalgie :",
+        lblQ3: "Sentiments au Départ :",
         lblQ4: "Moyens d'Adaptation :",
         lblQ5: "Force & Espoir :",
         lblQ6: "Réseau de Soutien :",
@@ -540,7 +647,7 @@
         supportTitle: "🌱 Vous n'avez pas à tout affronter seul(e)",
         supportSub: "Ressources officielles pour orientation et soutien :",
         cefit: "🧠 CEFI POA - Soutien Psychologique",
-        cefip: "Informations générales, accueil et soutien psychologique spécialisé.",
+        cefip: "Informations générales, accueil et soutien psychologique spécialisé. (SI VOUS AVEZ BESOIN D'UNE AIDE PSYCHOLOGIQUE, PRÉCISEZ QUE VOUS APPARTENEZ AU GROUPE DES IMMIGRANTS.)",
         cefil: "Accéder au portail du CEFI →",
         r1t: "🇧🇷 Services pour Immigrants", r1d: "Enregistrement migratoire, asile et titres de séjour.",
         r2t: "⚖️ Droits et Migrations", r2d: "Politiques publiques et intégration sociale.",
@@ -552,11 +659,25 @@
         btnRestart: "Recommencer"
       },
       'it': {
+        topBrand: "FACEFI • CEFI",
+        badge: "PROGETTO ACCADEMICO • PSICOLOGIA • 2026/2",
+        inst: "Faculdade do CEFI",
+        discLbl: "Disciplina:",
+        discVal: "Emozioni, Sofferenza e Resilienza",
+        authorsLbl: "Sviluppato da:",
+        profLbl: "Docente:",
         title: "MAPPA DELLA MIA STORIA",
         subtitle: "Un'esperienza interattiva per riflettere su percorsi, emozioni, sfide, legami e punti di forza dell'esperienza migratoria.",
+        emotionsTitle: "💜 Emozioni, consapevolezza di sé e accoglienza",
+        emotionsP1: "Le emozioni fanno parte della nostra vita quotidiana e mostrano come viviamo ogni momento. Coltivare la consapevolezza di sé aiuta a dare un nome a ciò che sentiamo, a riconoscere quando non stiamo bene e a capire che chiedere aiuto è un gesto di cura, non di debolezza.",
+        emotionsP2: "Avere un sostegno e una buona accoglienza sociale fa la differenza per attraversare i momenti difficili con maggiore sicurezza e dignità.",
+        migrationTitle: "🌍 Sofferenze umane, migrazione, rifugio e apolidia",
+        migrationP1: "I percorsi di migrazione, rifugio e apolidia coinvolgono storie complesse e sofferenze umane reali. In Brasile esistono spazi e reti di supporto dedicati a orientare e accogliere queste traiettorie.",
+        migrationP2: "Le domande seguenti sono pensate per sostenere la tua consapevolezza su ciò che senti; alla fine troverai percorsi e indicazioni per chiedere aiuto. Lungo questo cammino, ricorda di valorizzare e ricordare la tua cultura, rispettare il tuo corpo e comprendere cosa significa aprirsi a un nuovo momento di vita.",
         disclaimerTitle: "Questo strumento non è un test psicologico né una valutazione clinica.",
         disclaimer: "Le tue risposte sono utilizzate per costruire la tua mappa senza registrazione di dati personali.",
         btnStart: "Inizia la riflessione",
+        privacyNote: "Le tue risposte non restano salvate sul canale e nessuno ha accesso ai tuoi dati e alle tue risposte. Sono un supporto per conoscere meglio te stesso e sapere dove chiedere aiuto quando hai bisogno di supporto, senza esposizione della tua immagine.",
         stepPrefix: "TAPPA",
         stepOf: "DI",
         btnPrev: "Indietro",
@@ -566,7 +687,7 @@
         q1Hint: "(Pensa a situazioni, sentimenti, condizioni o esperienze).",
         q2Title: "Quali situazioni o esperienze hanno reso la vita più difficile a chi è emigrato o sta emigrando?",
         q2Hint: "(Quotidianità, relazioni, lavoro, casa, lingua o documenti).",
-        q3Title: "Cosa può pesare di più emotivamente nel lasciare il tuo paese?",
+        q3Title: "Quali sentimenti sono emersi quando hai lasciato il tuo paese?",
         q3Hint: "(Persone, luoghi, cibo, usanze, legami, lingua, abitudini).",
         q4Title: "Cosa aiuta te o gli altri ad affrontare queste difficoltà?",
         q4Hint: "(Una persona, un legame, la comunità, una risorsa, un'abilità).",
@@ -586,7 +707,7 @@
         resBelong: "💜 A che luogo appartengo quando la mia storia è in due posti?",
         lblQ1: "Paure & Emozioni:",
         lblQ2: "Difficoltà Migratorie:",
-        lblQ3: "Perdite & Nostalgia:",
+        lblQ3: "Sentimenti alla Partenza:",
         lblQ4: "Strategie di Superamento:",
         lblQ5: "Forza & Speranza:",
         lblQ6: "Rete di Supporto:",
@@ -594,7 +715,7 @@
         supportTitle: "🌱 Non devi affrontare tutto da solo/a",
         supportSub: "Punti di riferimento istituzionali:",
         cefit: "🧠 CEFI POA - Supporto Psicologico",
-        cefip: "Informazioni generali, accoglienza e supporto psicologico specializzato.",
+        cefip: "Informazioni generali, accoglienza e supporto psicologico specializzato. (SE HAI BISOGNO DI AIUTO PSICOLOGICO, DICI CHE APPARTIENI AL GRUPPO DEGLI IMMIGRATI.)",
         cefil: "Accedi al portale CEFI →",
         r1t: "🇧🇷 Servizi per Immigrati", r1d: "Registrazione, permessi di soggiorno e protezione.",
         r2t: "⚖️ Diritti e Migrazioni", r2d: "Orientamento ai diritti e integrazione sociale.",
@@ -606,11 +727,25 @@
         btnRestart: "Ricomincia"
       },
       'en': {
+        topBrand: "FACEFI • CEFI",
+        badge: "ACADEMIC PROJECT • PSYCHOLOGY • 2026/2",
+        inst: "Faculdade do CEFI",
+        discLbl: "Course:",
+        discVal: "Emotions, Suffering, and Resilience",
+        authorsLbl: "Developed by:",
+        profLbl: "Professor:",
         title: "MAP OF MY STORY",
         subtitle: "An interactive experience to reflect on paths, emotions, challenges, bonds, and strengths within the migratory journey.",
+        emotionsTitle: "💜 Emotions, self-knowledge, and welcoming",
+        emotionsP1: "Emotions are part of our everyday experience and show how we are living each moment. Practicing self-knowledge helps name what we feel, recognize when we are not okay, and understand that asking for help is an act of care—not weakness.",
+        emotionsP2: "Having support and a welcoming social environment makes a difference in navigating difficult moments with greater safety and dignity.",
+        migrationTitle: "🌍 Human suffering, migration, refuge, and statelessness",
+        migrationP1: "Migration, refuge, and statelessness involve complex stories and real human suffering. In Brazil, there are spaces and support networks dedicated to guiding and welcoming these journeys.",
+        migrationP2: "The following questions are designed to support your self-knowledge about what you feel; at the end, you will find pathways and guidance on where to seek help. Along this journey, remember to value and recall your culture, respect your body, and understand what it means to open yourself to a new chapter of life.",
         disclaimerTitle: "This tool is not a psychological test or clinical evaluation.",
         disclaimer: "Your responses are used to generate your personal reflection map without storing identifying information.",
         btnStart: "Start Reflection",
+        privacyNote: "Your responses are not saved on the channel and no one has access to your data or your answers. They serve as support for you to get to know yourself better and know where to seek help when you need support, without exposing your image.",
         stepPrefix: "STEP",
         stepOf: "OF",
         btnPrev: "Back",
@@ -620,7 +755,7 @@
         q1Hint: "(Think about situations, feelings, conditions, or experiences).",
         q2Title: "What situations or experiences made life more difficult for those who migrated or are migrating?",
         q2Hint: "(Daily life, relationships, work, housing, language, or legal papers).",
-        q3Title: "What can weigh most emotionally upon leaving your home country?",
+        q3Title: "What feelings came up when you left your country?",
         q3Hint: "(People, places, food, customs, bonds, language, routine, or life back home).",
         q4Title: "What helps you or others cope with and face these difficulties?",
         q4Hint: "(A person, connection, community, resource, skill, or opportunity).",
@@ -633,14 +768,14 @@
         q8Title: "Where do I belong when my story exists between two places?",
         q8Hint: "(There is no right answer. Write whatever this question awakens in you).",
         resultTitle: "Map of My Story",
-        resultDesc: "An reflective overview integrating your challenges, resources, and spaces of belonging.",
+        resultDesc: "A reflective overview integrating your challenges, resources, and spaces of belonging.",
         colChal: "⚠️ Challenges & Vulnerabilities",
         colStr: "🌱 Resources & Strengths",
         colFut: "🛡️ Protection & Necessary Changes",
         resBelong: "💜 Where do I belong when my story exists between two places?",
         lblQ1: "Fears & Feelings:",
         lblQ2: "Migration Hardships:",
-        lblQ3: "Losses & Longings:",
+        lblQ3: "Feelings Upon Leaving:",
         lblQ4: "Coping Strategies:",
         lblQ5: "Strength & Hope:",
         lblQ6: "Support Network:",
@@ -648,7 +783,7 @@
         supportTitle: "🌱 You don't have to face everything alone",
         supportSub: "Official resources for guidance and support:",
         cefit: "🧠 CEFI POA - Psychological Support",
-        cefip: "General information, welcoming, and specialized psychological support.",
+        cefip: "General information, welcoming, and specialized psychological support. (IF YOU NEED PSYCHOLOGICAL HELP, SAY THAT YOU BELONG TO THE IMMIGRANTS GROUP.)",
         cefil: "Access CEFI portal →",
         r1t: "🇧🇷 Immigrant Services", r1d: "Migratory registration, refugee status, and residency.",
         r2t: "⚖️ Rights & Migration", r2d: "Human rights and social integration guidelines.",
@@ -668,12 +803,29 @@
     function changeLang(lang) {
       currentLang = lang;
       const dict = translations[lang];
+
+      document.getElementById('t-top-brand').innerText = dict.topBrand;
+      document.getElementById('t-badge').innerText = dict.badge;
+      document.getElementById('t-inst').innerText = dict.inst;
+      document.getElementById('t-disc-lbl').innerText = dict.discLbl;
+      document.getElementById('t-disc-val').innerText = dict.discVal;
+      document.getElementById('t-authors-lbl').innerText = dict.authorsLbl;
+      document.getElementById('t-prof-lbl').innerText = dict.profLbl;
+
       document.getElementById('t-title').innerText = dict.title;
       document.getElementById('t-subtitle').innerText = dict.subtitle;
+      document.getElementById('t-emotions-title').innerText = dict.emotionsTitle;
+      document.getElementById('t-emotions-p1').innerText = dict.emotionsP1;
+      document.getElementById('t-emotions-p2').innerText = dict.emotionsP2;
+      document.getElementById('t-migration-title').innerText = dict.migrationTitle;
+      document.getElementById('t-migration-p1').innerText = dict.migrationP1;
+      document.getElementById('t-migration-p2').innerText = dict.migrationP2;
+
       document.getElementById('t-disclaimer-title').innerText = dict.disclaimerTitle;
       document.getElementById('t-disclaimer').innerText = dict.disclaimer;
       document.getElementById('t-btn-start').innerText = dict.btnStart;
-      
+      document.getElementById('t-privacy-note').innerText = dict.privacyNote;
+
       document.getElementById('t-q1-title').innerText = dict.q1Title; document.getElementById('t-q1-hint').innerText = dict.q1Hint;
       document.getElementById('t-q2-title').innerText = dict.q2Title; document.getElementById('t-q2-hint').innerText = dict.q2Hint;
       document.getElementById('t-q3-title').innerText = dict.q3Title; document.getElementById('t-q3-hint').innerText = dict.q3Hint;
@@ -721,7 +873,7 @@
       const dict = translations[currentLang];
       document.getElementById('step-counter-text').innerText = `${dict.stepPrefix} ${currentStep} ${dict.stepOf} ${totalSteps}`;
       document.getElementById('progress-fill').style.width = `${(currentStep / totalSteps) * 100}%`;
-      
+
       const prevBtn = document.getElementById('btn-prev');
       const nextBtn = document.getElementById('btn-next');
 
