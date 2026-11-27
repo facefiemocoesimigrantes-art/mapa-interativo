@@ -36,7 +36,7 @@
     .brand-pill { display: inline-flex; align-items: center; gap: 10px; background: white; border: 1px solid var(--border); padding: 5px 12px 5px 6px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     .brand-pill-label { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.3px; }
     .logo-circle { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; border: 1.5px solid #e2e8f0; flex-shrink: 0; }
-    .logo-circle-hero { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 12px auto; border: 2px solid #e2e8f0; box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08); }
+    .logo-circle-hero { width: 252px; max-width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 12px auto; border: 2px solid #e2e8f0; box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08); }
 
     .lang-bar { display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
     select { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border); background: white; font-weight: 600; cursor: pointer; color: var(--text); font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
@@ -86,6 +86,7 @@
 
     /* Resultado Final */
     .result-top-logo { text-align: center; margin-bottom: 10px; }
+    .result-top-logo .logo-circle-hero { width: 84px; height: 84px; }
     .map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
     @media (max-width: 640px) { .map-grid { grid-template-columns: 1fr; } }
     .map-box { padding: 20px; border-radius: 12px; border: 1px solid transparent; }
@@ -109,7 +110,7 @@
     @media (max-width: 640px) { .resources-grid { grid-template-columns: 1fr; } }
     .resource-card { border: 1px solid #e9d5ff; padding: 16px; border-radius: 10px; background: #faf5ff; }
     .resource-card h4 { font-size: 0.92rem; margin-bottom: 4px; color: var(--primary); }
-    .resource-card p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; }
+    .resource-card p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px; white-space: pre-line; }
     .resource-card a { font-size: 0.82rem; color: var(--primary); font-weight: 600; text-decoration: none; }
     .resource-card a:hover { text-decoration: underline; }
 
@@ -337,14 +338,16 @@
           <!-- CARD CEFI POA -->
           <div class="resource-card">
             <h4 id="t-cefit">🧠 CEFI POA - Suporte Psicológico</h4>
-            <p id="t-cefip" style="white-space: pre-line;">Informações gerais, acolhimento e suporte psicológico especializado.
+            <p id="t-cefip">Informações gerais, acolhimento e suporte psicológico especializado.
 
 SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SACEFI) - 51 9420-7006 (WhatsApp), e DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES para que eles te dêem suporte.</p>
             <a href="https://cefipoa.com.br/br/informacoes-gerais" target="_blank" id="t-cefil">Acessar portal do CEFI →</a>
           </div>
           <div class="resource-card">
             <h4 id="t-r1-t">🇧🇷 Serviços para imigrantes</h4>
-            <p id="t-r1-d">Registro migratório, residência, refúgio e naturalização.</p>
+            <p id="t-r1-d">Registro migratório, residência, refúgio e naturalização.
+
+Um espaço seguro, sigiloso e multilíngue que acolhe o autoconhecimento de imigrantes, refugiados e apátridas, conectando suas vivências a redes de apoio psicológico e serviços essenciais.</p>
             <a href="https://www.gov.br/pt-br/temas/servicos-para-imigrantes" target="_blank" class="t-r-link">Acessar serviço oficial →</a>
           </div>
           <div class="resource-card">
@@ -446,7 +449,8 @@ SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SA
         cefit: "🧠 CEFI POA - Suporte Psicológico",
         cefip: "Informações gerais, acolhimento e suporte psicológico especializado.\n\nSE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SACEFI) - 51 9420-7006 (WhatsApp), e DIGA QUE VOCÊ PERTENCE AO GRUPO DOS IMIGRANTES para que eles te dêem suporte.",
         cefil: "Acessar portal do CEFI →",
-        r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registro migratório, residência, refúgio e naturalização.",
+        r1t: "🇧🇷 Serviços para imigrantes",
+        r1d: "Registro migratório, residência, refúgio e naturalização.\n\nUm espaço seguro, sigiloso e multilíngue que acolhe o autoconhecimento de imigrantes, refugiados e apátridas, conectando suas vivências a redes de apoio psicológico e serviços essenciais.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações oficiais sobre direitos e políticas migratórias.",
         r3t: "💼 Trabalho e imigração", r3d: "Autorização de residência, trabalho e processos laborais.",
         r4t: "🏠 Assistência social", r4d: "Rede de assistência social (CRAS/CREAS) para acolhimento.",
@@ -514,7 +518,8 @@ SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SA
         cefit: "🧠 CEFI POA - Apoio Psicológico",
         cefip: "Informações gerais, acolhimento e suporte psicológico especializado.\n\nSE PRECISAR DE AJUDA PSICOLÓGICA, envie mensagem para a Receção Clínica (SACEFI) - +55 51 9420-7006 (WhatsApp), e DIGA QUE PERTENCE AO GRUPO DOS IMIGRANTES para que lhe prestem apoio.",
         cefil: "Aceder ao portal do CEFI →",
-        r1t: "🇧🇷 Serviços para imigrantes", r1d: "Registo migratório, residência e legalização.",
+        r1t: "🇧🇷 Serviços para imigrantes",
+        r1d: "Registo migratório, residência e legalização.\n\nUm espaço seguro, sigiloso e multilingue que acolhe o autoconhecimento de imigrantes, refugiados e apátridas, ligando as suas vivências a redes de apoio psicológico e serviços essenciais.",
         r2t: "⚖️ Direitos e migrações", r2d: "Informações sobre integração e direitos humanos.",
         r3t: "💼 Trabalho e migração", r3d: "Autorizações de trabalho e documentação laboral.",
         r4t: "🏠 Apoio Social", r4d: "Rede de assistência e acolhimento municipal.",
@@ -582,7 +587,8 @@ SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SA
         cefit: "🧠 CEFI POA - Apoyo Psicológico",
         cefip: "Información general, acogida y apoyo psicológico especializado.\n\nSI NECESITAS AYUDA PSICOLÓGICA, envía un mensaje a la Recepción Clínica (SACEFI) - +55 51 9420-7006 (WhatsApp), y DI QUE PERTENECES AL GRUPO DE LOS INMIGRANTES para que te brinden apoyo.",
         cefil: "Acceder al portal de CEFI →",
-        r1t: "🇧🇷 Servicios para Inmigrantes", r1d: "Registro migratorio, refugio y regularización.",
+        r1t: "🇧🇷 Servicios para Inmigrantes",
+        r1d: "Registro migratorio, refugio y regularización.\n\nUn espacio seguro, confidencial y multilingüe que acoge el autoconocimiento de inmigrantes, refugiados y apátridas, conectando sus vivencias con redes de apoyo psicológico y servicios esenciales.",
         r2t: "⚖️ Derechos y Migración", r2d: "Información sobre integración y derechos legales.",
         r3t: "💼 Trabajo y Empleo", r3d: "Permisos de trabajo y procesos laborales.",
         r4t: "🏠 Asistencia Social", r4d: "Red comunitaria de acogida (CRAS/CREAS).",
@@ -650,7 +656,8 @@ SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SA
         cefit: "🧠 CEFI POA - Soutien Psychologique",
         cefip: "Informations générales, accueil et soutien psychologique spécialisé.\n\nSI VOUS AVEZ BESOIN D'UNE AIDE PSYCHOLOGIQUE, envoyez un message à l'Accueil Clinique (SACEFI) - +55 51 9420-7006 (WhatsApp), et DITES QUE VOUS APPARTENEZ AU GROUPE DES IMMIGRANTS afin qu'ils vous accompagnent.",
         cefil: "Accéder au portail du CEFI →",
-        r1t: "🇧🇷 Services pour Immigrants", r1d: "Enregistrement migratoire, asile et titres de séjour.",
+        r1t: "🇧🇷 Services pour Immigrants",
+        r1d: "Enregistrement migratoire, asile et titres de séjour.\n\nUn espace sûr, confidentiel et multilingue qui accueille la connaissance de soi des immigrants, réfugiés et apatrides, reliant leurs vécus à des réseaux de soutien psychologique et aux services essentiels.",
         r2t: "⚖️ Droits et Migrations", r2d: "Politiques publiques et intégration sociale.",
         r3t: "💼 Travail et Emploi", r3d: "Autorisations de travail et démarches d'emploi.",
         r4t: "🏠 Assistance Sociale", r4d: "Réseau public d'accueil et orientation sociale.",
@@ -718,7 +725,8 @@ SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SA
         cefit: "🧠 CEFI POA - Supporto Psicologico",
         cefip: "Informazioni generali, accoglienza e supporto psicologico specializzato.\n\nSE HAI BISOGNO DI AIUTO PSICOLOGICO, invia un messaggio alla Reception Clinica (SACEFI) - +55 51 9420-7006 (WhatsApp), e DI' CHE APPARTIENI AL GRUPPO DEGLI IMMIGRATI affinché ti possano dare supporto.",
         cefil: "Accedi al portale CEFI →",
-        r1t: "🇧🇷 Servizi per Immigrati", r1d: "Registrazione, permessi di soggiorno e protezione.",
+        r1t: "🇧🇷 Servizi per Immigrati",
+        r1d: "Registrazione, permessi di soggiorno e protezione.\n\nUno spazio sicuro, riservato e multilingue che accoglie la consapevolezza di sé di immigrati, rifugiati e apolidi, collegando i loro vissuti a reti di supporto psicologico e servizi essenziali.",
         r2t: "⚖️ Diritti e Migrazioni", r2d: "Orientamento ai diritti e integrazione sociale.",
         r3t: "💼 Lavoro e Occupazione", r3d: "Documentazione lavorativa e contratti.",
         r4t: "🏠 Assistenza Sociale", r4d: "Rete territoriale di accoglienza e supporto familiare.",
@@ -786,7 +794,8 @@ SE PRECISAR DE AJUDA PSICOLÓGICA, mande mensagem para a Recepção Clínica (SA
         cefit: "🧠 CEFI POA - Psychological Support",
         cefip: "General information, welcoming, and specialized psychological support.\n\nIF YOU NEED PSYCHOLOGICAL HELP, send a message to Clinical Reception (SACEFI) - +55 51 9420-7006 (WhatsApp), and SAY THAT YOU BELONG TO THE IMMIGRANTS GROUP so they can support you.",
         cefil: "Access CEFI portal →",
-        r1t: "🇧🇷 Immigrant Services", r1d: "Migratory registration, refugee status, and residency.",
+        r1t: "🇧🇷 Immigrant Services",
+        r1d: "Migratory registration, refugee status, and residency.\n\nA safe, confidential, and multilingual space that welcomes the self-knowledge of immigrants, refugees, and stateless people, connecting their experiences to psychological support networks and essential services.",
         r2t: "⚖️ Rights & Migration", r2d: "Human rights and social integration guidelines.",
         r3t: "💼 Labor & Employment", r3d: "Work permits and formal employment support.",
         r4t: "🏠 Social Assistance", r4d: "Community social services and family support.",
